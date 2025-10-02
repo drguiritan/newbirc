@@ -12746,3 +12746,9 @@ django.template.exceptions.TemplateDoesNotExist: home/research_article_page.html
 [2025-10-02 13:57:31 +0800] [5819] [INFO] Booting worker with pid: 5819
 [2025-10-02 13:57:31 +0800] [5820] [INFO] Booting worker with pid: 5820
 [2025-10-02 13:57:31 +0800] [5821] [INFO] Booting worker with pid: 5821
+[2025-10-02 14:35:16 +0800] [6024] [INFO] Starting gunicorn 23.0.0
+[2025-10-02 14:35:16 +0800] [6024] [INFO] Listening at: http://0.0.0.0:80 (6024)
+[2025-10-02 14:35:16 +0800] [6024] [INFO] Using worker: sync
+[2025-10-02 14:35:16 +0800] [6025] [INFO] Booting worker with pid: 6025
+[2025-10-02 14:35:16 +0800] [6026] [INFO] Booting worker with pid: 6026
+[2025-10-02 14:35:17 +0800] [6027] [INFO] Booting worker with pid: 6027
