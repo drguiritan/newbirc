@@ -1,0 +1,129 @@
+/*
+Template Name: Forest
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+
+/*********************blog****************/
+.center_blog {
+    background-image: url("../image/1.340b5bd9e5cd.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.tags a {
+    display: block;
+    padding: 8px 15px;
+    margin: 0px 5px 8px 0px;
+    transition: 0.3s;
+    background: var(--bs-light);
+	border-radius:10px;
+}
+.tags a:hover {
+     background: var(--green)!important;
+	 color: var(--bs-white);
+}
+
+.center_blog_dt {
+    background-image: url("../image/3.f2a1167b6e55.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+.blockquote {
+    border-left: 5px solid var(--green);
+}
+
+.contact_1_right ul li{
+	border-left: 5px solid var(--green);
+}
+.cont_icon{
+  width:50px;
+  height:50px;
+  line-height:50px;  
+}
+
+
+.center_contact {
+    background-image: url("../image/1.340b5bd9e5cd.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+.center_event_dt {
+    background-image: url("../image/1.340b5bd9e5cd.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+/*********************blog_end****************/
+
+
+
+@media screen and (max-width : 767px){
+.event_dt1_right{
+	padding-left:0!important;
+	margin-top:20px;
+}
+.blog_pg1_right{
+	padding-left:0!important;
+	margin-top:20px;
+}
+.blog_dt1 img{
+	width:80px;
+}
+.blog_dt1 .btn-primary{
+	width:80%!important;
+}
+.contact_1_left{
+	margin-right:0!important;
+	margin-bottom:20px;
+}
+.contact_1_left_inner_left{
+	margin-top:10px;
+}
+ }
+
+
+@media (min-width:576px) and (max-width:767px) {
+.blog_dt1 img{
+	width:120px;
+}
+ }
+ 
+@media (min-width:768px) and (max-width:991px) {
+
+.event_dt1_right{
+	padding-left:0!important;
+}
+.blog_pg1_right{
+	padding-left:0!important;
+}
+.event_dt1_right1  img{
+	width:120px;
+}
+.blog_pg1_right1  ul{
+	font-size:13px;
+}
+.blog_pg1_right1  ul img{
+	width:60px;
+}
+.contact_1_right li{
+	padding:20px 10px!important;
+}
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+
+
+ }
+
+@media (min-width:1201px) and (max-width:1300px) {
+
+ }
+@media screen and (min-width : 1400px){
+
+
+
+ }
+
+

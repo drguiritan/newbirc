@@ -1,0 +1,73 @@
+/*
+Template Name: Forest
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+
+/*********************services****************/
+.center_serv {
+    background-image: url("../image/3.f2a1167b6e55.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.services_1_left{
+	border-top:7px solid  var(--green);
+}
+
+.center_serv_dt {
+    background-image: url("../image/2.93815d1595b5.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+/*********************services_end****************/
+
+
+
+@media screen and (max-width : 767px){
+.services_1_left{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.service_dt1_right{
+	padding-left:0!important;
+	margin-top:20px;
+}
+
+ }
+
+
+@media (min-width:576px) and (max-width:767px) {
+
+ }
+ 
+@media (min-width:768px) and (max-width:991px) {
+.services_1_left{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.service_dt1_right{
+	padding-left:0!important;
+}
+.blog_pg1_right1  ul{
+	font-size:13px;
+}
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+
+
+ }
+
+@media (min-width:1201px) and (max-width:1300px) {
+
+ }
+@media screen and (min-width : 1400px){
+
+
+
+ }
+
+

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+
+<!-- Master/Showcase Page Header -->
+<section id="showcase" class="pt-1">
+  <div class="container-xl">
+
+    <!-- Medium Cover Image -->
+    {% if page.cover_image %}
+      <div class="mb-4 text-center">
+        {% image page.cover_image fill-800x300 class="img-fluid " %}
+      </div>
+    {% endif %}
+
+    <!-- Title -->
+    <h1 class="mb-3">{{ page.title }}</h1>
+
+    <!-- Short Description -->
+    <div class="mb-5">
+      {{ page.short_description|richtext }}
+    </div>
+
+  </div>
+</section>
+
+<!-- List of Articles -->
+<section id="blog" class="pt-1">
+  <div class="container-xl">
+    <div class="blog_1 row row-cols-1">
+
+      {% for article in page.get_children.live %}
+        {% with article=article.specific %}
+          <div class="col mb-4">
+            <div class="blog_1_left rounded_10 p-3 shadow">
+
+              <div class="row align-items-center">
+
+                <!-- Column 1: Image -->
+              <div class="col p-0" style="max-width: 150px; max-height: 100px;">
+                {% if article.cover_image %}
+                  <a class="d-block h-100 w-100">
+                      
+                      {% image article.cover_image original class="img-fluid w-150 h-100 object-fit-cover" %}
+
+                  </a>
+                {% endif %}
+              </div>
+
+                <!-- Column 2: Title, Meta, Description -->
+                <div class="col">
+                 <!-- Article Title -->
+                  <h5>
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </h5>
+
+                  <!-- Short Description -->
+                  {% if article.short_description %}
+                    <div class="mt-1 mb-0">
+                      {{ article.short_description|richtext|truncatewords:25 }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <!-- Column 3: Read More Button -->
+                <div class="col-auto d-flex align-items-center">
+                  <a class="button button_2" href="{{ article.url }}">
+                    Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+                  </a>
+                </div>
+
+              </div> <!-- row -->
+
+            </div> <!-- blog_1_left -->
+          </div> <!-- col -->
+        {% endwith %}
+      {% empty %}
+        <p>No research articles yet.</p>
+      {% endfor %}
+
+    </div> <!-- blog_1 row -->
+  </div> <!-- container -->
+</section>
+
+{% endblock %}
