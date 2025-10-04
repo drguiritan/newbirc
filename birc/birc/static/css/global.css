@@ -242,7 +242,15 @@ a:hover {
 /* Desktop / Tablet Layout */
 .blog-desktop .blog_1_left {
   padding: 1rem;
+  background-color: var(--white);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.blog-desktop .blog_1_left:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
 .blog-desktop .col img {
   max-width: 150px;
   max-height: 100px;
@@ -252,46 +260,117 @@ a:hover {
 /* Mobile Layout */
 .blog-mobile .blog_1_left {
   padding: 0.5rem;
+  background-color: var(--white);
 }
+
 .blog-mobile .blog_1_left img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
-.blog-mobile h6 {
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
+
+.blog-mobile h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
+
 .blog-mobile p {
+  font-size: 0.9rem;
+}
+
+.blog-mobile .button_2 {
+  padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
 }
-.blog-mobile .button_2 {
-  padding: 0.35rem 0.75rem;
-  font-size: 0.8rem;
-}
 
-/* === Legacy Mobile Adjustments (Optional fallback) === */
-@media (max-width: 575px) {
-  .blog_1_left {
-    padding: 0.5rem !important;
+/* === Responsive adjustments for desktop layout on smaller screens === */
+@media (max-width: 767px) {
+  .blog-desktop .blog_1_left {
+    padding: 0.75rem !important;
   }
-  .blog_1_left .col img {
+  
+  .blog-desktop .blog_1_left .row {
+    flex-direction: column !important;
+  }
+  
+  .blog-desktop .blog_1_left .row > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  .blog-desktop .blog_1_left .row > div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  
+  .blog-desktop .col img {
     max-width: 100% !important;
     height: auto !important;
-    width: auto !important;
   }
-  .blog_1_left h5 {
-    font-size: 1rem !important;
+  
+  .blog-desktop h5 {
+    font-size: 1.1rem !important;
   }
-  .blog_1_left p,
-  .blog_1_left div {
+  
+  .blog-desktop p,
+  .blog-desktop div {
+    font-size: 0.9rem !important;
+  }
+  
+  .blog-desktop .button_2 {
+    padding: 0.4rem 0.8rem !important;
     font-size: 0.85rem !important;
   }
-  .blog_1_left .button_2 {
-    padding: 0.35rem 0.75rem !important;
-    font-size: 0.8rem !important;
-  }
-  .blog_1_left .row { gap: 0.25rem; }
 }
 
-/* modifies */
+/* === Button Styling === */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.button_2 {
+  background-color: var(--green);
+  color: var(--white);
+  border: 2px solid var(--green);
+}
+
+.button_2:hover {
+  background-color: var(--yellow);
+  color: var(--dark);
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+/* === Utility Classes === */
+.rounded_10 {
+  border-radius: 10px;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* === Showcase Section === */
+#showcase h1 {
+  color: var(--green);
+}
+
+#showcase {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 767px) {
+  #showcase h1 {
+    font-size: 2rem;
+  }
+  
+  #showcase {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
