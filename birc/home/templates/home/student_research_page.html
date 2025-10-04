@@ -7,17 +7,14 @@
 <section id="showcase" class="pt-1">
   <div class="container-xl">
 
-    <!-- Medium Cover Image -->
     {% if page.cover_image %}
       <div class="mb-4 text-center">
-        {% image page.cover_image fill-800x300 class="img-fluid " %}
+        {% image page.cover_image fill-800x300 class="img-fluid" %}
       </div>
     {% endif %}
 
-    <!-- Title -->
     <h1 class="mb-3">{{ page.title }}</h1>
 
-    <!-- Short Description -->
     <div class="mb-5">
       {{ page.short_description|richtext }}
     </div>
@@ -25,8 +22,8 @@
   </div>
 </section>
 
-<!-- List of Articles -->
-<section id="blog" class="pt-1">
+<!-- Desktop / Tablet Layout -->
+<section id="blog-desktop" class="blog-desktop pt-1 d-none d-sm-block">
   <div class="container-xl">
     <div class="blog_1 row row-cols-1">
 
@@ -34,28 +31,20 @@
         {% with article=article.specific %}
           <div class="col mb-4">
             <div class="blog_1_left rounded_10 p-3 shadow">
-
               <div class="row align-items-center">
 
                 <!-- Column 1: Image -->
-              <div class="col p-0" style="max-width: 150px; max-height: 100px;">
-                {% if article.cover_image %}
-                  <a class="d-block h-100 w-100">
-                      
+                <div class="col p-0" style="max-width: 150px; max-height: 100px;">
+                  {% if article.cover_image %}
+                    <a class="d-block h-100 w-100">
                       {% image article.cover_image original class="img-fluid w-150 h-100 object-fit-cover" %}
+                    </a>
+                  {% endif %}
+                </div>
 
-                  </a>
-                {% endif %}
-              </div>
-
-                <!-- Column 2: Title, Meta, Description -->
+                <!-- Column 2: Title & Description -->
                 <div class="col">
-                 <!-- Article Title -->
-                  <h5>
-                    <a href="{{ article.url }}">{{ article.title }}</a>
-                  </h5>
-
-                  <!-- Short Description -->
+                  <h5><a href="{{ article.url }}">{{ article.title }}</a></h5>
                   {% if article.short_description %}
                     <div class="mt-1 mb-0">
                       {{ article.short_description|richtext|truncatewords:25 }}
@@ -71,7 +60,6 @@
                 </div>
 
               </div> <!-- row -->
-
             </div> <!-- blog_1_left -->
           </div> <!-- col -->
         {% endwith %}
@@ -79,8 +67,42 @@
         <p>No research articles yet.</p>
       {% endfor %}
 
-    </div> <!-- blog_1 row -->
-  </div> <!-- container -->
+    </div>
+  </div>
+</section>
+
+<!-- Mobile Layout -->
+<section id="blog-mobile" class="blog-mobile pt-1 d-block d-sm-none">
+  <div class="container">
+    {% for article in page.get_children.live %}
+      {% with article=article.specific %}
+        <div class="blog_1_left rounded_10 mb-3 shadow p-2">
+
+          <!-- Mobile stacked layout -->
+          {% if article.cover_image %}
+            <div class="mb-2 text-center">
+              {% image article.cover_image original class="img-fluid w-100 object-fit-cover rounded" %}
+            </div>
+          {% endif %}
+
+          <h5 class="mb-1"><a href="{{ article.url }}">{{ article.title }}</a></h5>
+
+          {% if article.short_description %}
+            <p class="mb-2">{{ article.short_description|richtext|truncatewords:25 }}</p>
+          {% endif %}
+
+          <div class="text-end">
+            <a class="button button_2" href="{{ article.url }}">
+              Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+            </a>
+          </div>
+
+        </div>
+      {% endwith %}
+    {% empty %}
+      <p>No research articles yet.</p>
+    {% endfor %}
+  </div>
 </section>
 
 {% endblock %}

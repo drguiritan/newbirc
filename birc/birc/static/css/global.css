@@ -21,8 +21,7 @@ body {
   background-image: url('/static/image/icons-svg/liquid-new.svg');
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: cover; /* or contain depending on the design */
-  
+  background-size: cover;
 }
 
 ul {
@@ -52,7 +51,7 @@ a:hover {
 /* === Navbar Base === */
 .bg-mods-green {
   background-color: var(--green) !important;
-  position: relative; /* needed for pseudo-element positioning */
+  position: relative;
   opacity: 0.90;
 }
 
@@ -61,9 +60,9 @@ a:hover {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: .6px; /* 5px above the very bottom edge */
-  height: 1.7px; /* thickness of the line */
-  border-bottom: 1.7px solid rgba(246, 235, 235, 0.5); 
+  bottom: .6px;
+  height: 1.7px;
+  border-bottom: 1.7px solid rgba(246, 235, 235, 0.5);
 }
 
 .bg-mods-green .navbar-nav .nav-link,
@@ -102,10 +101,7 @@ a:hover {
 .navbar-toggler[aria-expanded="true"] .toggler-custom span {
   background: var(--yellow);
 }
-.navbar-toggler {
-  border: none;
-  background: transparent;
-}
+.navbar-toggler { border: none; background: transparent; }
 .navbar-toggler:focus { outline: none; box-shadow: none; }
 
 /* === Dropdown Menu Styling === */
@@ -114,15 +110,12 @@ a:hover {
   border: none;
   padding: 0;
   min-width: 220px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* modern subtle shadow */
-  border-radius: 6px; /* rounded corners */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border-radius: 6px;
 }
 
-.bg-mods-green .dropdown-menu li {
-  position: relative;
-}
+.bg-mods-green .dropdown-menu li { position: relative; }
 
-/* Divider between items */
 .bg-mods-green .dropdown-menu li:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -130,12 +123,11 @@ a:hover {
   right: 0;
   bottom: 0;
   height: .50px;
-  background-color: #C5C5C5; /* bright visible divider */
+  background-color: #C5C5C5;
   opacity: 0.5;
   border-radius: 1px;
 }
 
-/* Dropdown items */
 .bg-mods-green .dropdown-item {
   color: var(--white);
   padding: 0.75rem 1rem;
@@ -146,7 +138,6 @@ a:hover {
   transition: background 0.3s, color 0.3s, transform 0.2s;
 }
 
-/* Dropdown hover */
 .bg-mods-green .dropdown-item:hover {
   background-color: var(--yellow);
   color: var(--dark);
@@ -165,173 +156,140 @@ a:hover {
   filter: brightness(0) saturate(100%) invert(86%) sepia(91%) saturate(692%) hue-rotate(2deg) brightness(108%) contrast(103%);
 }
 
-/* Remove default bootstrap arrow */
-.navbar-nav .dropdown-toggle::after {
-  display: none !important;
-}
+.navbar-nav .dropdown-toggle::after { display: none !important; }
 
-
-
-
-/* === Footer Styling === *//* Footer Colors */
-/* #footer {
-  background-color: var(--dark-blue);
-  color: var(--white);
-} */
-/* === Footer === */
-/* #footer {
-  background: 
-    linear-gradient(
-      to top,
-      var(--dark-blue) 0%,        
-      rgba(25, 3, 85, 0.9) 30%,   
-      var(--green) 70%            
-    ),
-      background-size: cover;
-  color: var(--white);
-  padding: 60px 0;
-} */
-
+/* === Footer Styling === */
 #footer {
-  /* Gradient blend for modern natural feel */
-  background: linear-gradient(
-      135deg, 
-      #009241 0%,          /* primary green */
-      #00b056 50%,         /* lighter green for blend */
-      #007f32 100%         /* darker green for depth */
-    );
-    
+  background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
   background-size: cover;
   color: var(--white);
-  padding: 60px 0;  
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.1); /* subtle inner shadow */
-  
+  padding: 60px 0;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
 }
 
+#footer a { color: var(--white); transition: color 0.3s; }
+#footer a:hover { color: var(--yellow); }
 
-#footer a {
-  color: var(--white);
-  transition: color 0.3s;
-}
+#footer .line { border-top: 1px solid var(--white); opacity: 0.3; }
 
-#footer a:hover {
-  color: var(--yellow);
-}
-
-/* Divider lines inside footer */
-#footer .line {
-  border-top: 1px solid var(--white);
-  opacity: 0.3;
-}
-
-/* Footer bottom bar */
 #footer_b {
   background-color: var(--dark-blue);
   color: var(--white);
   padding: 20px 0;
-  
 }
 
-#footer_b p {
-  font-size: 0.68rem; /* slightly larger font for copyright */
-  margin-bottom: 0.5rem;
-  
-}
+#footer_b p { font-size: 0.68rem; margin-bottom: 0.5rem; }
+#footer_b a { color: var(--gray); transition: color 0.3s; }
+#footer_b a:hover { color: var(--yellow); }
 
-
-#footer_b a {
-  color: var(--gray);
-  transition: color 0.3s;
-}
-
-#footer_b a:hover {
-  color: var(--yellow);
-}
-
-/* Keep all column text white */
 #footer .row > div,
 #footer .row > div p,
 #footer .row > div ul,
 #footer .row > div li,
-#footer .row > div a {
-  color: #ffffff !important; /* white text for readability */
-}
+#footer .row > div a { color: #ffffff !important; }
 
-/* Column headers blue */
 #footer .row > div h3,
 #footer .row > div h5 {
-  color: var(--light-green) !important; /* Dodger Blue */
-  padding-bottom: 10px; /* space for divider */
-  display: block; /* full width block */
-  width: 100%; /* divider width relative to column */
-  border-bottom: 1px solid rgba(255,255,255,0.3); /* subtle divider */
+  color: var(--light-green) !important;
+  padding-bottom: 10px;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
+#footer .row > div h3 { padding-bottom: 2px; }
 
-#footer .row > div h3 {
- padding-bottom: 2px; /* space for divider */
-}
-
-/* Footer Partner Links - yellow background on hover */
-/* === Footer Partner Links Column Only === */
-/* Partners Links Column Only */
 #footer .partners-links ul li {
-  display: flex;          /* icon + text in one line */
+  display: flex;
   align-items: center;
-  gap: 6px;               /* space between icon and text */
+  gap: 6px;
   margin-bottom: 6px;
 }
 
-
 #footer .office-hours ul li {
   display: flex;
-  justify-content: space-between; /* space between label and value */
+  justify-content: space-between;
   align-items: center;
-  gap: 5px;                       /* space between icon and text */
-  white-space: nowrap;             /* prevent wrapping */
+  gap: 5px;
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;         /* cut overflow text with ... */
+  text-overflow: ellipsis;
 }
 
-
-
-/* Make <a> fill remaining space */
 #footer .partners-links ul li a {
   display: block;
-  flex: 1;                /* fill available width next to icon */
+  flex: 1;
   padding: 6px 6px;
   color: var(--white);
   text-decoration: none;
   border-radius: 4px;
-  white-space: nowrap;    /* prevent text wrap */
+  white-space: nowrap;
   transition: background-color 0.3s, color 0.3s;
 }
-
-/* Hover effect on <a> */
 #footer .partners-links ul li a:hover {
-  background-color: var(--yellow); /* yellow background */
-  color: var(--dark) !important;   /* dark text */
+  background-color: var(--yellow);
+  color: var(--dark) !important;
 }
 
-
-
-/* Social icons stacking on mobile */
+/* === Social icons stacking on mobile === */
 @media (max-width: 767px) {
-  #footer .row {
-    flex-direction: column; /* stack vertically */
-  }
-
-  #footer .row > div {
-    margin-bottom: 30px; /* space between sections */
-    padding-bottom: 20px; /* optional inner padding */
-    /* border-bottom: 1px solid rgba(255,255,255,0.3); *//* divider */
-  }
-
-  /* Remove divider for last column */
-  #footer .row > div:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
+  #footer .row { flex-direction: column; }
+  #footer .row > div { margin-bottom: 30px; padding-bottom: 20px; }
+  #footer .row > div:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 }
 
+/* === Blog / Article Cards === */
 
+/* Desktop / Tablet Layout */
+.blog-desktop .blog_1_left {
+  padding: 1rem;
+}
+.blog-desktop .col img {
+  max-width: 150px;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+/* Mobile Layout */
+.blog-mobile .blog_1_left {
+  padding: 0.5rem;
+}
+.blog-mobile .blog_1_left img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.blog-mobile h6 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.blog-mobile p {
+  font-size: 0.85rem;
+}
+.blog-mobile .button_2 {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* === Legacy Mobile Adjustments (Optional fallback) === */
+@media (max-width: 575px) {
+  .blog_1_left {
+    padding: 0.5rem !important;
+  }
+  .blog_1_left .col img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .blog_1_left h5 {
+    font-size: 1rem !important;
+  }
+  .blog_1_left p,
+  .blog_1_left div {
+    font-size: 0.85rem !important;
+  }
+  .blog_1_left .button_2 {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+  .blog_1_left .row { gap: 0.25rem; }
+}
