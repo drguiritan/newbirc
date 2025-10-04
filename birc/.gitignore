@@ -1,0 +1,16 @@
+# Python cache / compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# System files
+*.Zone.Identifier
+*.Zone.*
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+virt/
+.env/

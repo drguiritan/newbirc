@@ -1,0 +1,26 @@
+/* Change login background */
+.login {
+    background-color: #0a3d2e !important; /* dark green */
+}
+
+
+/* Optional: customize the login card */
+.login .login__container {
+    background: #ffffff !important;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.account-menu-item--editor-guide,
+.account-menu-item--editor_guide,
+a[href^="https://guide.wagtail.org"] {
+    display: none !important;
+}
+
+.sidebar-sub-menu-panel__footer { 
+  display: none;
+}
+
+
+
+

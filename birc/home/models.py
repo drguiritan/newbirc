@@ -16,7 +16,8 @@ from wagtail.images.models import Image
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 class HomePage(Page):
-    pass
+    class Meta:
+        verbose_name = "BIRC CONTENT MENU"
 
 
 
@@ -37,6 +38,9 @@ class StudentResearchPage(Page):
     ]
 
     subpage_types = ["ResearchArticlePage"]
+
+    class Meta:
+        verbose_name = "Creating content page for URE"
 
 
 # Child Page
@@ -60,6 +64,7 @@ class ResearchArticlePage(Page):
     ]
 
     parent_page_types = ["StudentResearchPage"]
+    subpage_types = []
 
 
 
