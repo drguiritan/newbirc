@@ -1,5 +1,5 @@
 
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailsettings_tags wagtailuserbar %}
 
 <section id="footer" class="py-5">
   <div class="container-xl">
@@ -7,12 +7,12 @@
 
       <!-- Left: About / Contact -->
       <div class="col-md-6">
-        <h3 class="mb-3">FSUU Biodiversity Informatics Research Center</h3>
-        <p class="text-white">We are many variations of passages available but the majority have suffered alteration in some form by injected humour words believable.</p>
+        <h3 class="mb-3">{{ site_config.site_name }}</h3>        
+        <p class="text-white">{{ site_config.site_description|richtext }}</p>
         <ul class="list-unstyled text-white mb-0">
-          <li class="d-flex mb-2"><i class="bi-telephone me-2 text-yellow"></i> +91 123 654 7898</li>
-          <li class="d-flex mb-2"><i class="bi-geo-alt me-2 text-yellow"></i> San. Francisco St. Butuan City, Philippines</li>
-          <li class="d-flex"><i class="bi-envelope me-2 text-yellow"></i> <a href="mailto:biodiversity@urios.edu.ph" class="text-white">biodiversity@urios.edu.ph</a></li>
+          <li class="d-flex mb-2"><i class="bi-telephone me-2 text-yellow"></i>{{ site_config.phone_number }}</li>
+          <li class="d-flex mb-2"><i class="bi-geo-alt me-2 text-yellow"></i> {{ site_config.address }}</li>
+          <li class="d-flex"><i class="bi-envelope me-2 text-yellow"></i> <a href="mailto:{{ site_config.email }}" class="text-white">{{ site_config.email }}</a></li>
         </ul>
       </div>
 
@@ -45,35 +45,29 @@
       <div class="col-md-2 partners-links">
           <h5 class="mb-3">Partners Links</h5>
           <ul class="list-unstyled text-white mb-0">
-            <li class="mb-2">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <a href="#">DOST PCIEERD</a>
-            </li>
-            <li class="mb-2">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <a href="#">DOST PCHRRD</a>
-            </li>
-            <li class="mb-2">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <a href="#">DENR Region</a>
-            </li>
-            <li class="mb-2">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <a href="#">DAR Region</a>
-            </li>
-            <li class="mb-2">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <a href="#">CHED Region</a>
-            </li>
+            
+           
+
+             {% for partner in site_config.partners.all|slice:":6" %}
+                  <li class="mb-2">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                       {% if partner.page %}
+                                <a href="{{ partner.page.url }}">{{ partner.title }}</a>
+                          {% else %}
+                                <a href="#">{{ partner.title }}</a>
+                       {% endif %}
+                  </li>
+              {% endfor %}
+
             <li>
               <i class="bi bi-box-arrow-up-right"></i>
               <a href="#">Others</a>
             </li>
+
           </ul>
       </div>
 
-
-    
+     
       
 
     </div>

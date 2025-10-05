@@ -1,12 +1,31 @@
-from wagtail.models import Page,Site
+from wagtail.models import Page
+from wagtail.models import Site
+from home.models import SiteConfiguration
 
 def research_links(request):
-    site = Site.find_for_request(request)
-    home_url = site.root_page.url if site and site.root_page else "/"
+  
     return {            
-        "home_url": home_url, 
-        "ure_page": Page.objects.filter(slug="ure-student-research").live().first(),
+        
+        "ure_page": Page.objects.filter(slug="ure-research-experience").live().first(),
         # "faculty_page": Page.objects.filter(slug="faculty-research").live().first(),
         # "collaboration_page": Page.objects.filter(slug="collaboration-research").live().first(),
         # "publications_page": Page.objects.filter(slug="publications").live().first(),
+    }
+
+def site_configuration(request):
+    """
+    Adds site-wide configuration to the template context
+    """
+    site = Site.find_for_request(request)
+    home_url = site.root_page.url if site and site.root_page else "/"
+    # Get the current site for this request
+    
+    if site:
+        config = SiteConfiguration.for_site(site)
+    else:
+        config = None
+
+    return {
+        "home_url": home_url, 
+        "site_config": config
     }

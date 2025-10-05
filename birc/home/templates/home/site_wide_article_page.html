@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+<!-- === Showcase / Hero Section === -->
+<section id="showcase" class="pt-1 mt-5" >
+  <div class="container-xl text-center">
+
+   {% if page.cover_image %}
+    <div class="mb-4">
+        {% image page.cover_image fill-190x214 class="img-fluid rounded" %}
+    </div>
+  {% endif %}
+
+    <h1 class="mb-3">{{ page.title }}</h1>
+
+    {% if page.short_description %}
+      <div class="mb-5 lead">
+        {{ page.short_description|richtext }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- === Main Content Section === -->
+<section id="article-content" class="pt-3 pb-5">
+  <div class="container-xl">
+
+    {% if page.content %}
+      <div class="main-content mb-4">
+        {{ page.content|richtext }}
+      </div>
+    {% endif %}
+
+    {% if page.extra_field %}
+      <div class="extra-field mt-3 p-3 bg-light rounded shadow-sm">
+        {{ page.extra_field|richtext }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}
