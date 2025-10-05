@@ -323,54 +323,11 @@ a:hover {
   }
 }
 
-/* === Button Styling === */
-.button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.3s;
-  font-weight: 500;
-}
-
-.button_2 {
-  background-color: var(--green);
-  color: var(--white);
-  border: 2px solid var(--green);
-}
-
-.button_2:hover {
-  background-color: var(--yellow);
-  color: var(--dark);
-  border-color: var(--yellow);
-  transform: translateY(-2px);
-}
-
-/* === Utility Classes === */
-.rounded_10 {
-  border-radius: 10px;
-}
-
-.object-fit-cover {
-  object-fit: cover;
-}
-
-/* === Showcase Section === */
-#showcase h1 {
-  color: var(--green);
-}
-
-#showcase {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-@media (max-width: 767px) {
-  #showcase h1 {
-    font-size: 2rem;
+/* === Tablet Layout Adjustments === */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Blog Cards */
+  .blog-desktop .blog_1_left {
+    padding: 1rem !important;
   }
-  
-  #showcase {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
+
 }

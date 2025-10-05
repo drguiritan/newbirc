@@ -18,7 +18,7 @@ body {
   line-height: 1.6;
   margin: 0;
 
-  background-image: url('/static/image/icons-svg/liquid-new.svg');
+  background-image: url("/static/image/icons-svg/liquid-new.0f46fa3c4e1d.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -330,4 +330,108 @@ a:hover {
     padding: 1rem !important;
   }
 
+  .blog-desktop .blog_1_left .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .blog-desktop .blog_1_left .row > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-desktop .col img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+
+  .blog-desktop h5 {
+    font-size: 1.15rem !important;
+  }
+
+  .blog-desktop p,
+  .blog-desktop div {
+    font-size: 0.95rem !important;
+  }
+
+  .blog-desktop .button_2 {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* Navbar adjustments */
+  .bg-mods-green .navbar-nav .nav-link,
+  .bg-mods-green .navbar-brand {
+    font-size: 0.95rem;
+  }
+
+  /* Dropdown menu width */
+  .bg-mods-green .dropdown-menu {
+    min-width: 200px;
+  }
+
+  /* Showcase section adjustments */
+  #showcase h1 {
+    font-size: 2.2rem;
+  }
+
+  #showcase {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* === Button Styling === */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.button_2 {
+  background-color: var(--green);
+  color: var(--white);
+  border: 2px solid var(--green);
+}
+
+.button_2:hover {
+  background-color: var(--yellow);
+  color: var(--dark);
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+/* === Utility Classes === */
+.rounded_10 {
+  border-radius: 10px;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* === Showcase Section === */
+#showcase h1 {
+  color: var(--green);
+}
+
+#showcase {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 767px) {
+  #showcase h1 {
+    font-size: 2rem;
+  }
+  
+  #showcase {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
