@@ -8,9 +8,9 @@ def research_links(request):
         
         "ure_page": Page.objects.filter(id=17).live().first(),
         "nhc_collection": Page.objects.filter(id=29).live().first(),
-        # "faculty_page": Page.objects.filter(slug="faculty-research").live().first(),
-        # "collaboration_page": Page.objects.filter(slug="collaboration-research").live().first(),
-        # "publications_page": Page.objects.filter(slug="publications").live().first(),
+        "faculty_page": Page.objects.filter(id=34).live().first(),
+        "collaboration_page": Page.objects.filter(id=36).live().first(),
+        "publication_page": Page.objects.filter(id=37).live().first(),
     }
 
 def site_configuration(request):

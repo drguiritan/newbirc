@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+
+<!-- Master/Showcase Page Header -->
+<section id="showcase" class="pt-5">
+  <div class="container-xl">
+
+    {% if page.cover_image %}
+      <div class="mb-4 text-center">
+        {% image page.cover_image fill-800x300 class="img-fluid" %}
+      </div>
+    {% endif %}
+
+    <h1 class="mb-3">{{ page.title }}</h1>
+
+    <div class="mb-5">
+      {{ page.short_description|richtext }}
+    </div>
+
+  </div>
+</section>
+
+<!-- Desktop / Tablet Layout -->
+<section id="blog-desktop" class="blog-desktop pt-1 d-none d-md-block">
+  <div class="container-xl">
+    <div class="blog_1 row row-cols-1">
+
+      {% for article in page.get_children.live %}
+        {% with article=article.specific %}
+          <div class="col mb-4">
+            <div class="blog_1_left rounded_10 p-3 shadow">
+              <div class="row align-items-center">
+
+                <!-- Column 1: Image -->
+                <div class="col-12 col-md-auto p-0 mb-3 mb-md-0 text-center text-md-start" style="max-width: 150px;">
+                  {% if article.cover_image %}
+                    <a class="d-block h-100 w-100">
+                      {% image article.cover_image original class="img-fluid w-100 h-100 object-fit-cover rounded" %}
+                    </a>
+                  {% endif %}
+                </div>
+
+                <!-- Column 2: Title & Description -->
+                <div class="col-12 col-md">
+                  <h5><div class="row_article_title">{{ article.title }}</div></h5>
+                  {% if article.short_description %}
+                    <div class="mt-1 mb-2 mb-md-0">
+                      {{ article.short_description|richtext|truncatewords:25 }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <!-- Column 3: Read More Button -->
+                <div class="col-12 col-md-auto d-flex align-items-center justify-content-center justify-content-md-end">
+                  <a class="button button_2" href="{{ article.url }}">
+                    Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+                  </a>
+                </div>
+
+              </div> <!-- row -->
+            </div> <!-- blog_1_left -->
+          </div> <!-- col -->
+        {% endwith %}
+      {% empty %}
+        <p>No research articles yet.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<!-- Mobile Layout -->
+<section id="blog-mobile" class="blog-mobile pt-1 d-block d-md-none">
+  <div class="container">
+    {% for article in page.get_children.live %}
+      {% with article=article.specific %}
+        <div class="blog_1_left rounded_10 mb-3 shadow p-2">
+
+          <!-- Mobile stacked layout -->
+          {% if article.cover_image %}
+            <div class="mb-2 text-center">
+              {% image article.cover_image original class="img-fluid w-100 object-fit-cover rounded" %}
+            </div>
+          {% endif %}
+
+          <h5 class="mb-1"><div class="row_article_title">{{ article.title }}</div></h5>
+
+          {% if article.short_description %}
+            <p class="mb-2">{{ article.short_description|richtext|truncatewords:25 }}</p>
+          {% endif %}
+
+          <div class="text-end">
+            <a class="button button_2" href="{{ article.url }}">
+              Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+            </a>
+          </div>
+
+        </div>
+      {% endwith %}
+    {% empty %}
+      <p>No research articles yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

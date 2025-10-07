@@ -86,6 +86,192 @@ class ResearchArticlePage(Page):
     subpage_types = []
 
 
+# Faculty Master Page
+class FacultyResearchPage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    short_description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("short_description"),
+        
+    ]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
+    ]
+    
+    subpage_types = ["FacultyArticlePage"]
+
+    class Meta:
+        verbose_name = "Creating pages for Faculty Research only"
+
+
+# Faculty Research Child Page
+class FacultyArticlePage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    thumbnail_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Thumbnail image for listings"
+    )
+
+    short_description = RichTextField(blank=True)
+    content = RichTextField(blank=True)
+    extra_field = RichTextField(blank=True)  # e.g. Adviser, Year, Category
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("thumbnail_image"),
+        FieldPanel("short_description"),
+        FieldPanel("content"),
+        FieldPanel("extra_field"),
+    ]
+
+    parent_page_types = ["FacultyResearchPage"]
+    subpage_types = []
+
+
+
+# Collaboration Master Page
+class CollaborationResearchPage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    short_description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("short_description"),
+        
+    ]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
+    ]
+    
+    subpage_types = ["CollaborationArticlePage"]
+
+    class Meta:
+        verbose_name = "Creating pages for Collaboration Research only"
+
+
+# Collaboration Research Child Page
+class CollaborationArticlePage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    thumbnail_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Thumbnail image for listings"
+    )
+
+    short_description = RichTextField(blank=True)
+    content = RichTextField(blank=True)
+    extra_field = RichTextField(blank=True)  # e.g. Adviser, Year, Category
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("thumbnail_image"),
+        FieldPanel("short_description"),
+        FieldPanel("content"),
+        FieldPanel("extra_field"),
+    ]
+
+    parent_page_types = ["CollaborationResearchPage"]
+    subpage_types = []
+
+
+# Publication Master Page
+class PublicationResearchPage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+    short_description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("short_description"),
+        
+    ]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
+    ]
+    
+    subpage_types = ["PublicationArticlePage"]
+
+    class Meta:
+        verbose_name = "Creating pages for Publication Research only"
+
+
+# Publication Research Child Page
+class PublicationArticlePage(Page):
+    cover_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    thumbnail_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Thumbnail image for listings"
+    )
+
+    short_description = RichTextField(blank=True)
+    content = RichTextField(blank=True)
+    extra_field = RichTextField(blank=True)  # e.g. Adviser, Year, Category
+
+    content_panels = Page.content_panels + [
+        FieldPanel("cover_image"),
+        FieldPanel("thumbnail_image"),
+        FieldPanel("short_description"),
+        FieldPanel("content"),
+        FieldPanel("extra_field"),
+    ]
+
+    parent_page_types = ["PublicationResearchPage"]
+    subpage_types = []
+
 #site wide Master Page
 class SiteWidePage(Page):
     cover_image = models.ForeignKey(
