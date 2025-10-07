@@ -35,14 +35,7 @@ urlpatterns = [
     path("robots.txt", robots_txt),
     path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "favicon.ico", permanent=True)),
     
-    # Block common vulnerability scanning paths
-    path(".env", RedirectView.as_view(url="/", permanent=False)),
-    path("vendor/.env", RedirectView.as_view(url="/", permanent=False)),
-    path("storage/.env", RedirectView.as_view(url="/", permanent=False)),
-    path("assets/.env", RedirectView.as_view(url="/", permanent=False)),
-    path("public/.env", RedirectView.as_view(url="/", permanent=False)),
-    path("app/.env", RedirectView.as_view(url="/", permanent=False)),
-    path("laravel/.env", RedirectView.as_view(url="/", permanent=False)),
+   
 ]
 
 

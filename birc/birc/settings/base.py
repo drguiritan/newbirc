@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8-bnbdjry1h30ze$uv1-f5ktdlp=q$kmt7fdmb9v))1s(4d7mm'
+SECRET_KEY = 'keykey'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -190,6 +190,8 @@ WAGTAILSEARCH_BACKENDS = {
 CSRF_TRUSTED_ORIGINS = [
     'http://103.125.216.46',
 ]
+
+USE_X_FORWARDED_HOST = True
 
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
