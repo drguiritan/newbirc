@@ -43,9 +43,16 @@ a {
   text-decoration: none;
   transition: color 0.3s;
 }
+
 a:hover {
   color: var(--yellow);
   text-decoration: none;
+}
+
+div .row_article_title {
+    font-family: "Baloo 2", sans-serif;
+    font-weight: bold;
+    color: var(--green);
 }
 
 /* === Navbar Base === */
@@ -158,6 +165,30 @@ a:hover {
 
 .navbar-nav .dropdown-toggle::after { display: none !important; }
 
+
+/* === Button Styling === */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.button_2 {
+  background-color: var(--green); /* default green background */
+  color: var(--white);             /* white text */
+  border: 2px solid var(--green);  /* green border */
+}
+
+.button_2:hover {
+  background-color: var(--yellow); /* hover matches partners link */
+  color: var(--dark) !important;   /* dark text on hover */
+  border-color: var(--yellow);     /* border turns yellow on hover */
+  transform: none;                 /* no lift effect for exact match */
+}
+
+
 /* === Footer Styling === */
 #footer {
   background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
@@ -244,10 +275,11 @@ a:hover {
   padding: 1rem;
   background-color: var(--white);
   transition: transform 0.3s, box-shadow 0.3s;
+  
 }
 
 .blog-desktop .blog_1_left:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px);  
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 

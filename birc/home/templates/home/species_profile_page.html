@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+
+<section id="species-profile" class="pt-5 py-5">
+  <div class="container-xl">
+
+    <div class="row">
+      <div class="col-12">
+        {% if page.cover_image %}
+          {% image page.cover_image fill-800x400 class="img-fluid rounded mb-3" %}
+        {% endif %}
+
+        <h1 class="mb-2">{{ page.title }}</h1>
+        {% if page.subtitle %}
+          <h5 class="text-muted mb-4">{{ page.subtitle }}</h5>
+        {% endif %}
+
+        <div class="species-body">
+          {% for block in page.body %}            
+            {% if block.block_type == "heading_h1" %}
+              <h1>{{ block.value }}</h1>
+            {% elif block.block_type == "heading_h2" %}
+              <h2>{{ block.value }}</h2>
+            {% elif block.block_type == "heading_h3" %}
+              <h3>{{ block.value }}</h3>        
+            {% elif block.block_type == "paragraph" %}
+              <p>{{ block.value|richtext }}</p>
+            {% elif block.block_type == "image" %}
+              {% image block.value fill-800x400 class="img-fluid mb-3" %}
+            {% elif block.block_type == "quote" %}
+              <blockquote class="blockquote">{{ block.value }}</blockquote>
+            {% elif block.block_type == "page_link" %}
+              <p><a href="{{ block.value.url }}" class="btn btn-primary">Go to page</a></p>
+            {% elif block.block_type == "external_url" %}
+              <p><a href="{{ block.value }}" target="_blank" class="btn btn-outline-primary">External Link</a></p>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

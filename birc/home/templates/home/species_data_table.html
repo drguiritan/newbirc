@@ -1,0 +1,151 @@
+
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
+
+{% block content %}
+
+<section class="dataset-header">
+  <div class="container-xl">
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description|safe }}</p>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+{% if page.gallery_images.all %}
+<section class="dataset-gallery pt-3">
+  <div class="container-xl d-flex flex-wrap gap-3">
+    {% for img in page.gallery_images.all %}
+      <div style="flex: 0 0 200px; text-align: center;">
+
+        {% if img.image %}
+          {% image img.image fill-200x200 class="img-fluid rounded mb-1" %}
+        {% endif %}
+
+
+        {% if img.caption %}
+          <p style="font-size: 14px; color: #000;">{{ img.caption }}</p>
+        {% endif %}
+
+        {% if img.pagelink %}
+          <p style="margin-top: 5px;">
+            <a href="{{ img.pagelink.url }}" style="font-size: 14px; color: #007bff; text-decoration: underline;">
+              View Details
+            </a>
+          </p>
+        {% endif %}
+        
+
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+
+<section class="dataset-table pt-3">
+  <div class="container-xl">
+
+    {% if page.columns and page.rows.all %}
+      <!-- Search Input -->
+      <div style="margin-bottom: 15px;">
+        <input 
+            type="text" 
+            id="tableSearch" 
+            placeholder="Search table data..." 
+            style="width: 100%; padding: 10px; background-color: #f9f9f9; color: #333; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;"
+        >
+        <p style="margin-top: 8px; color: #666; font-size: 12px;">
+            Search across all columns. Results update as you type.
+        </p>
+      </div>
+
+
+      <div style="overflow-x: auto; max-height: 600px; overflow-y: auto;">
+        <table id="speciesTable" class="listing" style="width: 100%; border-collapse: collapse; background-color: #ffffff; font-family: Arial, sans-serif;">
+              <thead>
+                <tr>
+                  <th style="position: sticky; top: 0; background-color: #f5f5f5; padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #333;">#</th>
+                  {% for col in page.columns %}
+                    <th style="position: sticky; top: 0; background-color: #f5f5f5; padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #333;">
+                      {{ col }}
+                    </th>
+                  {% endfor %}
+                </tr>
+              </thead>
+
+              <tbody id="tableBody">
+                {% for row in page.rows.all %}
+                  <tr class="data-row" style="transition: background-color 0.2s;">
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #ffffff; color: #333;">{{ forloop.counter }}</td>
+                    {% for cell in row.cells %}
+                      <td style="padding: 8px; border: 1px solid #ddd; background-color: #ffffff; color: #333;">
+                        {{ cell }}
+                      </td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+
+            <!-- Optional: Add hover effect via inline style -->
+            <style>
+              #speciesTable tbody tr:hover {
+                background-color: #f0f8ff;
+              }
+            </style>
+      </div>
+
+      <div style="margin-top: 5px; display: flex; justify-content: space-between; align-items: center;">
+        <p style="color: #666; margin: 0; padding-bottom: 10px; font-size: 11px;">
+          <strong>Total rows:</strong> <span id="totalRows">{{ page.rows.count }}</span>
+        </p>
+        <p style="color: #666; margin: 0; padding-bottom: 10px; font-size: 11px;">
+          <strong>Showing:</strong> <span id="visibleRows">{{ page.rows.count }}</span> rows
+        </p>
+      </div>
+
+      <!-- Search JS -->
+      <script>
+      (function() {
+          var searchInput = document.getElementById('tableSearch');
+          var tableBody = document.getElementById('tableBody');
+          var rows = tableBody.getElementsByClassName('data-row');
+          var visibleRowsSpan = document.getElementById('visibleRows');
+
+          searchInput.addEventListener('input', function() {
+              var searchTerm = this.value.toLowerCase();
+              var visibleCount = 0;
+
+              for (var i = 0; i < rows.length; i++) {
+                  var row = rows[i];
+                  var cells = row.getElementsByTagName('td');
+                  var found = false;
+
+                  for (var j = 1; j < cells.length; j++) {  // skip row number
+                      if (cells[j].innerText.toLowerCase().includes(searchTerm)) {
+                          found = true;
+                          break;
+                      }
+                  }
+
+                  row.style.display = found || searchTerm === '' ? '' : 'none';
+                  if (found || searchTerm === '') visibleCount++;
+              }
+
+              visibleRowsSpan.textContent = visibleCount;
+          });
+      })();
+      </script>
+
+    {% else %}
+      <p style="padding: 20px; background-color: #2d2d2d; border: 1px solid #444; border-radius: 4px; color: #ffffff;">
+        {% trans "No data available for this species collection." %}
+      </p>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}
