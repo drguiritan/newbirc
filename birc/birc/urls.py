@@ -8,11 +8,41 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from django.http import HttpResponse
+from django.views.generic import RedirectView
+
+
+
+def robots_txt(request):
+    """Generate robots.txt to reduce bot scanning"""
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Disallow: /django-admin/",
+        "Disallow: /documents/",
+        "Allow: /",
+        "",
+        f"Sitemap: {request.scheme}://{request.get_host()}/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+    # Security: Handle common bot requests
+    path("robots.txt", robots_txt),
+    path("favicon.ico", RedirectView.as_view(url=settings.STATIC_URL + "favicon.ico", permanent=True)),
+    
+    # Block common vulnerability scanning paths
+    path(".env", RedirectView.as_view(url="/", permanent=False)),
+    path("vendor/.env", RedirectView.as_view(url="/", permanent=False)),
+    path("storage/.env", RedirectView.as_view(url="/", permanent=False)),
+    path("assets/.env", RedirectView.as_view(url="/", permanent=False)),
+    path("public/.env", RedirectView.as_view(url="/", permanent=False)),
+    path("app/.env", RedirectView.as_view(url="/", permanent=False)),
+    path("laravel/.env", RedirectView.as_view(url="/", permanent=False)),
 ]
 
 
