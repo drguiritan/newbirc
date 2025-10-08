@@ -1,47 +1,58 @@
-
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags static i18n %}
 
 {% block content %}
 
-<section class="dataset-header pt-5">
+<section class="dataset-header pt-5 bg_black">
   <div class="container-xl">
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.description|safe }}</p>
+    <h1 class="text-dark">{{ page.title }}</h1>
+    <p class="text-dark">{{ page.description|safe }}</p>
   </div>
 </section>
 
 <!-- Gallery Section -->
 {% if page.gallery_images.all %}
-<section class="dataset-gallery pt-3">
-  <div class="container-xl d-flex flex-wrap gap-3">
-    {% for img in page.gallery_images.all %}
-      <div style="flex: 0 0 200px; text-align: center;">
-
-        {% if img.image %}
-          {% image img.image fill-200x200 class="img-fluid rounded mb-1" %}
-        {% endif %}
-
-
-        {% if img.caption %}
-          <p style="font-size: 14px; color: #000;">{{ img.caption }}</p>
-        {% endif %}
-
-        {% if img.pagelink %}
-          <p style="margin-top: 5px;">
-            <a href="{{ img.pagelink.url }}" style="font-size: 14px; color: #007bff; text-decoration: underline;">
-              View Details
-            </a>
-          </p>
-        {% endif %}
-
-
-      </div>
-    {% endfor %}
+<section class="dataset-gallery py-5 bg_black">
+  <div class="container-xl">
+        
+    <div class="blog_1 row row-cols-1 row-cols-md-3">
+      {% for img in page.gallery_images.all %}
+            <div class="col">
+                <div class="blog_1_left rounded_10 p-3 shadow bg_black">
+                        {% if img.image %}
+                         
+                            {% image img.image fill-500x350 class="img-fluid rounded_10" %}
+                         
+                        {% endif %}
+          
+         
+          
+                        {% if img.caption %}
+                            <h5 class="text-dark py-3">{{ img.caption }}</h5>        
+                            <p class="text-dark">{{ img.intro|richtext|striptags|truncatechars:120 }}</p>        
+                        {% endif %}
+                        
+                        <div class="py-0">
+                              {% if img.pagelink %}
+                                    <a class="button button_2" href="{{ img.pagelink.url }}">
+                                      Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+                                    </a>     
+                              {% else %}      
+                                    <a class="button button_2" href="#">
+                                      Read More <i class="bi-arrow-right-square-fill ms-1"></i>
+                                    </a>
+                              {% endif %}
+                        </div>
+                </div>
+             </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endif %}
 
+
+ 
 
 <section class="dataset-table pt-3">
   <div class="container-xl">
@@ -60,41 +71,53 @@
         </p>
       </div>
 
-
       <div style="overflow-x: auto; max-height: 600px; overflow-y: auto;">
-        <table id="speciesTable" class="listing" style="width: 100%; border-collapse: collapse; background-color: #ffffff; font-family: Arial, sans-serif;">
-              <thead>
-                <tr>
-                  <th style="position: sticky; top: 0; background-color: #f5f5f5; padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #333;">#</th>
-                  {% for col in page.columns %}
-                    <th style="position: sticky; top: 0; background-color: #f5f5f5; padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #333;">
-                      {{ col }}
-                    </th>
-                  {% endfor %}
-                </tr>
-              </thead>
+        <table id="speciesTable" class="listing w-100 border_light">
+          <thead>
+            <tr>
+              <th class="sticky-header bg_green">#</th>
+              {% for col in page.columns %}
+                <th class="sticky-header bg_green">
+                  {{ col }}
+                </th>
+              {% endfor %}
+            </tr>
+          </thead>
 
-              <tbody id="tableBody">
-                {% for row in page.rows.all %}
-                  <tr class="data-row" style="transition: background-color 0.2s;">
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #ffffff; color: #333;">{{ forloop.counter }}</td>
-                    {% for cell in row.cells %}
-                      <td style="padding: 8px; border: 1px solid #ddd; background-color: #ffffff; color: #333;">
-                        {{ cell }}
-                      </td>
-                    {% endfor %}
-                  </tr>
+          <tbody id="tableBody">
+            {% for row in page.rows.all %}
+              <tr class="data-row">
+                <td class="p-2 border_light bg-white text-dark font_14">{{ forloop.counter }}</td>
+                {% for cell in row.cells %}
+                  <td class="p-2 border_light bg-white text-dark font_14">
+                    {{ cell }}
+                  </td>
                 {% endfor %}
-              </tbody>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
 
-            </table>
-
-            <!-- Optional: Add hover effect via inline style -->
-            <style>
-              #speciesTable tbody tr:hover {
-                background-color: #f0f8ff;
-              }
-            </style>
+        <style>
+          .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: var(--green) !important;
+            color: white !important;
+            padding: 10px;
+            border: 1px solid var(--border_light);
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+          }
+          #speciesTable tbody tr:hover {
+            background-color: #dadada;          
+          }
+          #speciesTable tbody td {
+            background-color: #ffffff !important;
+            border: 1px solid var(--green); /* Matches your green theme */
+          }
+        </style>
       </div>
 
       <div style="margin-top: 5px; display: flex; justify-content: space-between; align-items: center;">
@@ -146,6 +169,8 @@
     {% endif %}
 
   </div>
+
+
 </section>
 
 {% endblock %}

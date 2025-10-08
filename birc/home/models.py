@@ -504,6 +504,12 @@ class SpeciesGalleryImage(Orderable):
         help_text="Optional caption for the species image"
     )
 
+    intro = RichTextField(
+        blank=True,
+        features=[],  # Empty features list - no formatting allowed
+        help_text="Introduction text for this species"
+    )
+
     pagelink = models.ForeignKey(
         Page,
         null=True,
@@ -516,6 +522,7 @@ class SpeciesGalleryImage(Orderable):
     panels = [
         FieldPanel('image'),
         FieldPanel('caption'),
+        FieldPanel('intro'),     
         PageChooserPanel('pagelink'),
     ]
 
@@ -606,11 +613,12 @@ class SepciesPage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+"
-    )
+    )    
+
     short_description = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("cover_image"),
+        FieldPanel("cover_image"),        
         FieldPanel("short_description"),
     ]
 
@@ -628,6 +636,8 @@ class SpeciesProfilePage(Page):
     """
     Detailed page for a single species.
     """
+
+   
         
     body = StreamField([
         ('heading_h1', blocks.CharBlock(classname="full title", label="Heading H1")),
@@ -640,7 +650,7 @@ class SpeciesProfilePage(Page):
         ('external_url', URLBlock(label="External URL", help_text="external link")),
     ], blank=True, use_json_field=True)  # Wagtail 7 uses JSONField by default
     
-    content_panels = Page.content_panels + [        
+    content_panels = Page.content_panels + [   
         FieldPanel('body'),
     ]
 
