@@ -15,3 +15,7 @@ venv/
 virt/
 .env/
 ../static/
+
+
+#manage.py
+manage.py
