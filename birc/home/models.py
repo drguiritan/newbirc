@@ -354,6 +354,7 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
     phone_number = models.CharField(max_length=50, default="+91 123 654 7898")
     address = models.TextField(default="San. Francisco St. Butuan City, Philippines")
     email = models.EmailField(default="biodiversity@urios.edu.ph")
+    developed_by = models.TextField(verbose_name="Developed By",default="© 2025 FSUU BIRC WEBSITE. All Rights Reserved | Developed by BIRC TEAM")
 
     site_description = RichTextField(
         blank=True,
@@ -370,6 +371,8 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
                 FieldPanel("address"),
                 FieldPanel("email"),
                 FieldPanel("site_description"),
+                FieldPanel("developed_by"),
+
             
             ],
             heading="Site wide configuration"
