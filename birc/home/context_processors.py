@@ -11,7 +11,15 @@ def research_links(request):
         "faculty_page": Page.objects.filter(id=34).live().first(),
         "collaboration_page": Page.objects.filter(id=36).live().first(),
         "publication_page": Page.objects.filter(id=37).live().first(),
+       
+        
     }
+
+def contact_link(request):
+    return {
+         "contact_page": Page.objects.filter(slug="contact-page").live().first(),
+    }
+
 
 def site_configuration(request):
     """

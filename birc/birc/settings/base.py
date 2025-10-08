@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['103.125.216.46', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     "home",
+    "contacts",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -86,6 +87,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "home.context_processors.research_links",
                 "home.context_processors.site_configuration",
+                "home.context_processors.contact_link",
+                
             ],
         },
     },

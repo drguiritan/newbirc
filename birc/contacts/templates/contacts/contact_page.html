@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-contactpage{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <h1>{{ page.title }}</h1>
+    
+    {% if page.intro %}
+        <div class="intro">
+            {{ page.intro|richtext }}
+        </div>
+    {% endif %}
+    
+    <form method="post" class="contact-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+            <div class="form-errors">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% else %}
+                <div class="form-field {% if field.errors %}has-error{% endif %}">
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="required">*</span>{% endif %}
+                    </label>
+                    
+                    {{ field }}
+                    
+                    {% if field.help_text %}
+                        <small class="help-text">{{ field.help_text }}</small>
+                    {% endif %}
+                    
+                    {% if field.errors %}
+                        <div class="field-error">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- HONEYPOT: Hidden field to catch spam bots -->
+        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+            <label for="id_website">Website</label>
+            <input 
+                type="text" 
+                name="website" 
+                id="id_website"
+                value="" 
+                tabindex="-1" 
+                autocomplete="off"
+            >
+        </div>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+</div>
+
+<style>
+    .contact-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+    
+    .contact-container h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 32px;
+        font-weight: 700;
+    }
+    
+    .intro {
+        margin-bottom: 30px;
+        color: #555;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .intro p {
+        margin-bottom: 10px;
+    }
+    
+    .contact-form {
+        background: #f9f9f9;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    }
+    
+    .form-errors {
+        background: #fee;
+        border-left: 4px solid #e74c3c;
+        color: #c33;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 25px;
+    }
+    
+    .form-errors ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .form-field {
+        margin-bottom: 25px;
+    }
+    
+    .form-field.has-error input,
+    .form-field.has-error textarea,
+    .form-field.has-error select {
+        border-color: #e74c3c;
+    }
+    
+    .form-field label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+        font-size: 15px;
+    }
+    
+    .required {
+        color: #e74c3c;
+        margin-left: 3px;
+    }
+    
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field input[type="url"],
+    .form-field input[type="number"],
+    .form-field input[type="date"],
+    .form-field input[type="time"],
+    .form-field textarea,
+    .form-field select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        font-family: inherit;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        box-sizing: border-box;
+        background: white;
+    }
+    
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    }
+    
+    .form-field textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.5;
+    }
+    
+    .form-field input[type="checkbox"],
+    .form-field input[type="radio"] {
+        width: auto;
+        margin-right: 8px;
+    }
+    
+    .help-text {
+        display: block;
+        color: #777;
+        font-size: 13px;
+        margin-top: 6px;
+        line-height: 1.4;
+    }
+    
+    .field-error {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 6px;
+        font-weight: 500;
+    }
+    
+    .field-error ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .submit-btn {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 14px 45px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+    }
+    
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+    }
+    
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+    
+    @media (max-width: 768px) {
+        .contact-container {
+            margin: 20px;
+            padding: 15px;
+        }
+        
+        .contact-form {
+            padding: 25px 20px;
+        }
+        
+        .contact-container h1 {
+            font-size: 26px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px 20px;
+        }
+    }
+</style>
+{% endblock %}

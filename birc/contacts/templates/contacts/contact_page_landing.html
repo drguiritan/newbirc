@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-contactpage-landing{% endblock %}
+
+{% block content %}
+<div class="thank-you-wrapper">
+    <div class="thank-you-container">
+        <div class="success-icon">✓</div>
+        
+        <h1>Thank You!</h1>
+        
+        {% if page.thank_you_text %}
+            <div class="thank-you-message">
+                {{ page.thank_you_text|richtext }}
+            </div>
+        {% else %}
+            <div class="thank-you-message">
+                <p>Your message has been sent successfully.</p>
+                <p>We'll get back to you as soon as possible!</p>
+            </div>
+        {% endif %}
+        
+        <a href="/" class="home-btn">Return to Home</a>
+    </div>
+</div>
+
+<style>
+    .thank-you-wrapper {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+    
+    .thank-you-container {
+        max-width: 600px;
+        background: white;
+        padding: 60px 40px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        animation: slideUp 0.6s ease;
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .success-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        font-size: 60px;
+        line-height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 30px;
+        animation: scaleIn 0.5s ease 0.2s both;
+        box-shadow: 0 10px 30px rgba(40,167,69,0.2);
+    }
+    
+    @keyframes scaleIn {
+        from {
+            transform: scale(0) rotate(-180deg);
+        }
+        to {
+            transform: scale(1) rotate(0deg);
+        }
+    }
+    
+    .thank-you-container h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 36px;
+        font-weight: 700;
+    }
+    
+    .thank-you-message {
+        color: #555;
+        margin-bottom: 35px;
+        font-size: 16px;
+        line-height: 1.8;
+    }
+    
+    .thank-you-message p {
+        margin-bottom: 10px;
+    }
+    
+    .home-btn {
+        display: inline-block;
+        background: #007bff;
+        color: white;
+        padding: 14px 45px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+    }
+    
+    .home-btn:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .home-btn:active {
+        transform: translateY(0);
+    }
+    
+    @media (max-width: 768px) {
+        .thank-you-container {
+            padding: 40px 25px;
+        }
+        
+        .thank-you-container h1 {
+            font-size: 28px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            font-size: 50px;
+            line-height: 80px;
+        }
+    }
+</style>
+{% endblock %}
