@@ -16,7 +16,6 @@ from .field_panels import FileUploadPanel
 from .forms import SpeciesDataTableForm
 from .panels import ReadOnlyTablePanel,PageIDPanel  
 
-
 #The Master Page
 class HomePage(Page):
     class Meta:
@@ -346,6 +345,70 @@ class Partner(models.Model):
         return self.title or "Partner"
  
     
+ICON_CHOICES = [
+    ("bi-calendar-check me-2", "Calendar Check"),
+    ("bi-clock me-2", "Clock"),
+    ("bi-binoculars me-2", "Binoculars"),
+    ("bi-slash-circle me-2", "Slash Circle"),
+    ("bi-geo-alt me-2", "Location"),
+    ("bi-person me-2", "Person"),
+]
+
+
+class GenericFieldItem(models.Model):
+    # site_config = models.OneToOneField(
+    #     'SiteConfiguration',
+    #     on_delete=models.CASCADE,
+    #     related_name='generic_fields'
+    # )
+
+    site_config = ParentalKey(
+        'SiteConfiguration',
+        on_delete=models.CASCADE,
+        related_name='generic_fields'
+    )
+
+    # Caption / Value / Icon
+    
+    caption1 = models.CharField(max_length=100, blank=True)
+    value1 = models.CharField(max_length=100, blank=True)
+    icon1 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    caption2 = models.CharField(max_length=100, blank=True)
+    value2 = models.CharField(max_length=100, blank=True)
+    icon2 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    caption3 = models.CharField(max_length=100, blank=True)
+    value3 = models.CharField(max_length=100, blank=True)
+    icon3 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    caption4 = models.CharField(max_length=100, blank=True)
+    value4 = models.CharField(max_length=100, blank=True)
+    icon4 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    caption5 = models.CharField(max_length=100, blank=True)
+    value5 = models.CharField(max_length=100, blank=True)
+    icon5 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    caption6 = models.CharField(max_length=100, blank=True)
+    value6 = models.CharField(max_length=100, blank=True)
+    icon6 = models.CharField(max_length=50, choices=ICON_CHOICES, blank=True)
+
+    panels = [
+        FieldPanel("caption1"), FieldPanel("value1"), FieldPanel("icon1"),
+        FieldPanel("caption2"), FieldPanel("value2"), FieldPanel("icon2"),
+        FieldPanel("caption3"), FieldPanel("value3"), FieldPanel("icon3"),
+        FieldPanel("caption4"), FieldPanel("value4"), FieldPanel("icon4"),
+        FieldPanel("caption5"), FieldPanel("value5"), FieldPanel("icon5"),
+        FieldPanel("caption6"), FieldPanel("value6"), FieldPanel("icon6"),
+    ]
+
+    def __str__(self):
+        return self.caption1 or "Generic Item"
+
+    class Meta:
+        verbose_name = "Generic Item"
+        verbose_name_plural = "Generic Items"
 
 @register_setting
 class SiteConfiguration(ClusterableModel,BaseSiteSetting):
@@ -377,7 +440,8 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
             ],
             heading="Site wide configuration"
         ),
-         InlinePanel("partners", label="BIRC Partner"), # Works because of ParentalKey
+         InlinePanel("partners", label="BIRC Partner",classname="collapsed"), # Works because of ParentalKey
+         InlinePanel("generic_fields", max_num=1, min_num=1, label="Generic MultiField Items",classname="collapsed"),         
     ]
 
     class Meta:
