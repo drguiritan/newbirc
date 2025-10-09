@@ -27,7 +27,7 @@
   {% if page.extra_field %}
   <div class="row mt-4">
     <div class="col-12">
-      <h5>Additional Info</h5>
+      <h5>{{ site_config.footer_additional_info }}</h5>
       {{ page.extra_field|richtext }}
     </div>
   </div>

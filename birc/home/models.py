@@ -418,6 +418,17 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
     address = models.TextField(default="San. Francisco St. Butuan City, Philippines")
     email = models.EmailField(default="biodiversity@urios.edu.ph")
     developed_by = models.TextField(verbose_name="Developed By",default="© 2025 FSUU BIRC WEBSITE. All Rights Reserved | Developed by BIRC TEAM")
+    footer_additional_info = models.TextField(verbose_name="A caption footer additional information for all site wide footer article page",blank=True,default="")
+    fsuu_mv_caption = models.TextField(verbose_name="FSUU mision and vision caption",blank=True,default="Father Saturnino Urios University")
+    birc_mv_caption = models.TextField(verbose_name="BIRC mision and vision caption",blank=True,default="Biodiversity Informatics Research Center")
+    mv_ourteam_caption = models.TextField(verbose_name="Team Title",blank=True,default="Our Team")
+    mv_ourteam_description = RichTextField(
+        blank=True,
+        features=[],  # Empty features list - no formatting allowed
+        verbose_name="Team Short Description",
+        help_text="Introduction text for this species",
+        default="Meet the dedicated individuals behind our mission"
+    )
 
     site_description = RichTextField(
         blank=True,
@@ -434,11 +445,19 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
                 FieldPanel("address"),
                 FieldPanel("email"),
                 FieldPanel("site_description"),
-                FieldPanel("developed_by"),
-
-            
+                FieldPanel("footer_additional_info"),
+                FieldPanel("developed_by"),            
             ],
             heading="Site wide configuration"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("fsuu_mv_caption"),
+                FieldPanel("birc_mv_caption"),                
+                FieldPanel("mv_ourteam_caption"),
+                FieldPanel("mv_ourteam_description"), 
+            ],
+            heading="Mission and Vision Captions",classname="collapsed"
         ),
          InlinePanel("partners", label="BIRC Partner",classname="collapsed"), # Works because of ParentalKey
          InlinePanel("generic_fields", max_num=1, min_num=1, label="Generic MultiField Items",classname="collapsed"),         
@@ -477,8 +496,6 @@ class CollectionPage(Page):
 
     class Meta:
         verbose_name = "Creating pages for Natural History Collection only"
-
-
 
 
 # Define the gallery model FIRST
@@ -660,3 +677,243 @@ class SpeciesProfilePage(Page):
     class Meta:
         verbose_name = "Species Profile"   
         verbose_name_plural = "Species Profiles"     
+
+
+
+
+class MissionVisionPage(Page):
+
+    fsuu_logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Father Saturnino Urios University Logo"
+    )
+
+    # FSUU Mission section
+    fsuu_mission_title = models.CharField(max_length=255, default="FSUU Mission")
+    fsuu_mission_content = RichTextField(features=['bold', 'italic', 'link'], blank=True)
+    
+    # FSUU Vision section  
+    fsuu_vision_title = models.CharField(max_length=255, default="FSUU Vision")
+    fsuu_vision_content = RichTextField(features=['bold', 'italic', 'link'], blank=True)
+    
+    # Page content
+    fsuu_body = RichTextField(blank=True, features=['bold', 'italic', 'link', 'ol', 'ul'])
+
+
+    birc_logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Biodiversity Informatics Research Center Logo"
+    )
+
+    # BIRC Mission section
+    birc_mission_title = models.CharField(max_length=255, default="Our Mission")
+    birc_mission_content = RichTextField(features=['bold', 'italic', 'link'], blank=True)
+    
+    # Vision section  
+    birc_vision_title = models.CharField(max_length=255, default="Our Vision")
+    birc_vision_content = RichTextField(features=['bold', 'italic', 'link'], blank=True)
+    
+    # Page content
+    birc_body = RichTextField(blank=True, features=['bold', 'italic', 'link', 'ol', 'ul'])
+    
+    
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel('fsuu_logo', heading="Logo"),
+                FieldPanel('fsuu_mission_title', heading="Mission Title"),
+                FieldPanel('fsuu_mission_content', heading="Mission Content"),
+                FieldPanel('fsuu_vision_title', heading="Vision Title"),
+                FieldPanel('fsuu_vision_content', heading="Vision Content"),
+                FieldPanel('fsuu_body', heading="Additional Content"),
+            ],
+            heading="FSUU Section",
+            classname="collapsible collapsed"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('birc_logo', heading="Logo"),
+                FieldPanel('birc_mission_title', heading="Mission Title"),
+                FieldPanel('birc_mission_content', heading="Mission Content"),
+                FieldPanel('birc_vision_title', heading="Vision Title"),
+                FieldPanel('birc_vision_content', heading="Vision Content"),
+                FieldPanel('birc_body', heading="Additional Content"),
+            ],
+            heading="BIRC Section",
+            classname="collapsible collapsed"
+        ),
+        InlinePanel('personnel_items', label="Personnel"),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
+    ]   
+    
+    # Template
+    template = "home/mv/mv_page.html"
+    
+    # Parent page type
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
+    
+    class Meta:
+        verbose_name = "Mission & Vision Page"
+        verbose_name_plural = "Mission & Vision Pages"
+    
+    @classmethod
+    def can_create_at(cls, parent):
+        # Only allow creation if no other MissionVisionPage exists
+        return super().can_create_at(parent) and not cls.objects.exists()
+    
+    def save(self, *args, **kwargs):
+        # Ensure this is the only instance
+        if not self.pk and MissionVisionPage.objects.exists():
+            raise Exception("Only one Mission & Vision page can be created")
+        super().save(*args, **kwargs)
+
+
+class Personnel(ClusterableModel):
+    page = ParentalKey(
+        MissionVisionPage,
+        on_delete=models.CASCADE,
+        related_name='personnel_items'
+    )
+    
+    name = models.CharField(max_length=255, help_text="Full name of the personnel")
+    position = models.CharField(max_length=255, help_text="Job title or position")
+    department = models.CharField(max_length=255, blank=True, help_text="Department or unit")
+    email = models.EmailField(blank=True, help_text="Email address")
+    phone = models.CharField(max_length=50, blank=True, help_text="Phone number")
+    bio = RichTextField(
+        features=['bold', 'italic', 'link', 'ol', 'ul'],
+        blank=True,
+        help_text="Short biography or description"
+    )
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Profile photo"
+    )
+    order = models.IntegerField(default=0, help_text="Ordering number")
+    
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('position'),
+        FieldPanel('department'),
+        FieldPanel('email'),
+        FieldPanel('phone'),
+        FieldPanel('photo'),
+        FieldPanel('bio'),
+        FieldPanel('order'),
+    ]
+    
+    class Meta:
+        verbose_name = "Personnel"
+        verbose_name_plural = "Personnel"
+        ordering = ['order', 'name']
+    
+    def __str__(self):
+        return f"{self.name} - {self.position}"
+
+
+
+
+
+#Start Swiper
+class SwiperMasterPage(Page):
+
+    content_panels = Page.content_panels + [ InlinePanel('swiper_items', label="Swiper Items",classname="collapsed"),]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
+    ]   
+    
+    # Template
+    template = "home/swiper/swiper_page.html"
+    
+    # Parent page type
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
+    
+    class Meta:
+        verbose_name = "Swiper page"
+        verbose_name_plural = "Swiper pages"
+    
+    @classmethod
+    def can_create_at(cls, parent):
+        # Only allow creation if no other MissionVisionPage exists
+        return super().can_create_at(parent) and not cls.objects.exists()
+    
+    def save(self, *args, **kwargs):
+        # Ensure this is the only instance
+        if not self.pk and SwiperMasterPage.objects.exists():
+            raise Exception("Only one swiper page can be created")
+        super().save(*args, **kwargs)
+
+
+    
+class SwiperData(ClusterableModel):
+    page = ParentalKey(
+        SwiperMasterPage,
+        on_delete=models.CASCADE,
+        related_name='swiper_items'
+    )
+    
+    name = models.CharField(max_length=795, help_text="Feature Name")
+    alt_name = models.CharField(max_length=795,blank=True, help_text="Feature alternate name or intro")
+    content = RichTextField(
+        features=['bold', 'italic', 'link', 'ol', 'ul'],
+        blank=True,
+        help_text="Description"
+    )
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Image for the feature"
+    )
+
+    pagelink = models.ForeignKey(
+        Page,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Optional page link for this species information"
+    )
+
+    order = models.IntegerField(default=0, help_text="Ordering number")
+    
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('alt_name'),
+        FieldPanel('content'),
+        FieldPanel('image'),
+        PageChooserPanel('pagelink'),
+        FieldPanel('order'),
+    ]
+    
+    class Meta:
+        verbose_name = "Swiper Data"
+        verbose_name_plural = "Swiper Data"
+        ordering = ['order', 'name']
+    
+    def __str__(self):
+        return f"{self.name} - {self.position}"
+    
+    
+#End Swiper

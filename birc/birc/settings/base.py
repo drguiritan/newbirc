@@ -88,6 +88,7 @@ TEMPLATES = [
                 "home.context_processors.research_links",
                 "home.context_processors.site_configuration",
                 "home.context_processors.contact_link",
+                "home.context_processors.swiper_context",
                 
             ],
         },

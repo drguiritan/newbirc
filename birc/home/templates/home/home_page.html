@@ -2,23 +2,39 @@
 
 {% load static wagtailcore_tags wagtailuserbar %}
 
+
+
+
+
 {% block content %}
 
+{% include "pages/swiper.html" %}
 
+<!-- Full-Width Herpetofauna SVG Animation -->
+<svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg"
+     style="width: 100%; height: auto; max-height: 120px; margin-top: 0px; display: block;"
+     preserveAspectRatio="none">
 
-<section id="blog" class="py-5">
- <div class="container-xl">
-  
-  <div class="blog_1 row row-cols-1">
+  <!-- First Wavy Line Divider (Amphibians) -->
+  <path d="M0 100 Q250 90 500 100 T1000 100"
+        stroke="#22c55e" stroke-width="2.5" fill="none">
+    <animate attributeName="d" dur="5s" repeatCount="indefinite"
+             values="M0 100 Q250 90 500 100 T1000 100;
+                     M0 100 Q250 110 500 100 T1000 100;
+                     M0 100 Q250 90 500 100 T1000 100" />
+  </path>
 
-    <div class="col">
-     <div class="blog_1_left rounded_10 p-3 shadow" style="max-height: 450px; overflow: hidden;">
-	   <a href="#"><img src="{% static 'image/8.jpg' %}" class="img-fluid rounded_10" alt="abc"></a>
-	
-	 </div>
-   </div>
-   
-</section>
+  <!-- Second Wavy Line Divider (Reptiles, Opposite Motion) -->
+  <path d="M0 108 Q250 88 500 108 T1000 108"
+        stroke="#84cc16" stroke-width="2.5" fill="none" opacity="0.8">
+    <animate attributeName="d" dur="5s" repeatCount="indefinite"
+             values="M0 108 Q250 118 500 108 T1000 108;
+                     M0 108 Q250 88 500 108 T1000 108;
+                     M0 108 Q250 118 500 108 T1000 108" />
+  </path>
+
+</svg>
+<!-- End SVG Animation -->
 
 
 <section id="blog" class="py-5">

@@ -34,6 +34,8 @@ h1, h2, h3, h4, h5 {
   font-family: "Baloo 2", sans-serif;
   font-weight: bold;
 }
+
+
 h1 { font-size: 48px; }
 h2 { font-size: 2.5rem!important; }
 h6 { font-weight: normal; }
@@ -60,6 +62,7 @@ div .row_article_title {
   background-color: var(--green) !important;
   position: relative;
   opacity: 0.90;
+  z-index: 1000; 
 }
 
 .bg-mods-green::after {
@@ -111,6 +114,12 @@ div .row_article_title {
 .navbar-toggler { border: none; background: transparent; }
 .navbar-toggler:focus { outline: none; box-shadow: none; }
 
+.swiper, 
+.swiper-wrapper, 
+.swiper-slide {
+    z-index: 400; /* default stacking context */
+}
+
 /* === Dropdown Menu Styling === */
 .bg-mods-green .dropdown-menu {
   background-color: var(--green);
@@ -119,6 +128,8 @@ div .row_article_title {
   min-width: 220px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   border-radius: 6px;
+  position: absolute;
+  z-index: 9999 !important;
 }
 
 .bg-mods-green .dropdown-menu li { position: relative; }
@@ -133,6 +144,7 @@ div .row_article_title {
   background-color: #C5C5C5;
   opacity: 0.5;
   border-radius: 1px;
+  
 }
 
 .bg-mods-green .dropdown-item {
@@ -143,11 +155,13 @@ div .row_article_title {
   background-color: transparent;
   box-sizing: border-box;
   transition: background 0.3s, color 0.3s, transform 0.2s;
+  
 }
 
 .bg-mods-green .dropdown-item:hover {
   background-color: var(--yellow);
   color: var(--dark);
+  
 }
 
 /* === Arrow rotation === */
@@ -362,4 +376,138 @@ div .row_article_title {
     padding: 1rem !important;
   }
 
+}
+
+
+
+
+/* Base styling for h1 with underline effect */
+/* for H1 styling */
+/* === H1 with Full-Width Glowing Underline === */
+/* Cross-Browser Compatible (Chrome, Firefox, Safari, Edge, Opera) */
+
+/* Base styling for h1 with underline effect */
+h1.text-dark {
+    position: relative;
+    padding-bottom: 20px; /* Space for the underline */
+    display: inline-block; /* Makes h1 fit content width */    
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+h3.text-dark.full-width {
+    position: relative;
+    padding-bottom: 20px; /* Space for the underline */
+    display: inline-block; /* Makes h1 fit content width */    
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+/* Full-width animated glowing underline - Dark Green (#009241) themed */
+h1.text-dark.full-width::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%; /* Spans entire text width */
+    height: 5px; /* Bolder line */
+    
+    /* Gradient with fallback - Dark Green theme */
+    background: #009241; /* Fallback for older browsers */
+    background: -webkit-linear-gradient(left, 
+        transparent,
+        rgba(0, 146, 65, 0.3),
+        #009241,
+        #009241,
+        rgba(0, 146, 65, 0.3),
+        transparent
+    ); /* Safari 5.1-6, Chrome 10-25, iOS 5+, Android 4+ */
+    background: -moz-linear-gradient(left, 
+        transparent,
+        rgba(0, 146, 65, 0.3),
+        #009241,
+        #009241,
+        rgba(0, 146, 65, 0.3),
+        transparent
+    ); /* Firefox 3.6-15 */
+    background: -o-linear-gradient(left, 
+        transparent,
+        rgba(0, 146, 65, 0.3),
+        #009241,
+        #009241,
+        rgba(0, 146, 65, 0.3),
+        transparent
+    ); /* Opera 11.1-12 */
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(0, 146, 65, 0.3),
+        #009241,
+        #009241,
+        rgba(0, 146, 65, 0.3),
+        transparent
+    ); /* Modern browsers */
+    
+    border-radius: 3px;
+    
+    /* Box-shadow with fallbacks - Dark green glow */
+    -webkit-box-shadow: 0 0 20px rgba(0, 146, 65, 0.6);
+    -moz-box-shadow: 0 0 20px rgba(0, 146, 65, 0.6);
+    box-shadow: 0 0 20px rgba(0, 146, 65, 0.6);
+    
+    /* Animation with prefixes */
+    -webkit-animation: glow 2s ease-in-out infinite;
+    -moz-animation: glow 2s ease-in-out infinite;
+    -o-animation: glow 2s ease-in-out infinite;
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* === Browser Support === */
+/*
+✅ Chrome: All versions (including mobile)
+✅ Firefox: All versions
+✅ Safari: 5.1+ (including iOS)
+✅ Edge: All versions
+✅ Opera: 11.1+
+✅ Internet Explorer: 10+ (no animation in IE9, but line still shows)
+✅ Samsung Internet: All versions
+✅ UC Browser: All versions
+
+Graceful degradation for older browsers:
+- IE9: Shows solid #009241 line (no gradient/animation)
+- Very old browsers: No underline effect (doesn't break layout)
+*/
+
+/* === Usage === */
+/* 
+HTML:
+<h1 class="text-dark full-width">Your Title</h1>
+
+This version uses your primary dark green (#009241) with:
+- Bolder 5px line
+- Strong dark green glow effect
+- Full cross-browser compatibility
+- Matches your brand's primary green color
+*/
+/* === for H1 Styling === */
+.content-box {
+  line-height: 1.3;
+  text-align: justify;
+  height: 100px;       /* fixed height */
+  overflow: hidden;     /* hide excess text */
+}
+
+.button.btn-sm,
+.button_2.btn-sm {
+  padding: 0.25rem 0.6rem !important;
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Ensure card uses flex layout */
+.swiper-slide .card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;  /* adjust to fit image + content + button */
+}
+
+.text-end.mt-auto {
+  margin-top: auto;    /* pushes button to bottom */
 }
