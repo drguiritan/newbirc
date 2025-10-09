@@ -18,7 +18,7 @@ body {
   line-height: 1.6;
   margin: 0;
 
-  background-image: url('/static/image/icons-svg/liquid-new.svg');
+  background-image: url("/static/image/icons-svg/liquid-new.0f46fa3c4e1d.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -117,28 +117,8 @@ div .row_article_title {
 .swiper, 
 .swiper-wrapper, 
 .swiper-slide {
-    z-index: 100; /* default stacking context */
+    z-index: 1000; /* default stacking context */
 }
-
-/* === Dropdown Menu === */
-/* === Dropdown Menu Styling === */
-.bg-mods-green .dropdown-menu {
-  background-color: var(--green);
-  border: none;
-  padding: 0;
-  min-width: 220px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  
-  /* Remove fixed height and allow natural scaling */
-  max-height: none !important;
-  height: auto !important;
-  
-  /* Ensure proper overflow handling */
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 
 /* === Dropdown Menu Styling === */
 .bg-mods-green .dropdown-menu {
@@ -148,49 +128,11 @@ div .row_article_title {
   min-width: 220px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   border-radius: 6px;
-  
-  /* Remove fixed height and allow natural scaling */
-  max-height: none !important;
-  height: auto !important;
-  
-  /* Ensure proper overflow handling */
-  overflow-y: auto;
-  overflow-x: hidden;
+  position: absolute;
+  z-index: 1001 !important;
 }
 
-/* Mobile-specific dropdown adjustments */
-@media (max-width: 991px) {
-  .bg-mods-green .dropdown-menu {
-    position: static !important; /* Let it flow naturally in mobile */
-    transform: none !important;
-    width: 100%;
-    margin-top: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    /* Allow natural height scaling */
-    max-height: none !important;
-    height: auto !important;
-    
-    /* Smooth animation for height changes */
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Ensure dropdown items are properly spaced on mobile */
-  .bg-mods-green .dropdown-item {
-    padding: 1rem 1.25rem;
-    font-size: 1rem;
-  }
-  
-  /* Remove the forced positioning context for mobile */
-  .bg-mods-green .nav-item.dropdown {
-    position: static;
-  }
-}
-
-/* Keep your existing dropdown item styles */
-.bg-mods-green .dropdown-menu li { 
-  position: relative; 
-}
+.bg-mods-green .dropdown-menu li { position: relative; }
 
 .bg-mods-green .dropdown-menu li:not(:last-child)::after {
   content: '';
@@ -202,6 +144,7 @@ div .row_article_title {
   background-color: #C5C5C5;
   opacity: 0.5;
   border-radius: 1px;
+  
 }
 
 .bg-mods-green .dropdown-item {
@@ -212,18 +155,14 @@ div .row_article_title {
   background-color: transparent;
   box-sizing: border-box;
   transition: background 0.3s, color 0.3s, transform 0.2s;
+  
 }
 
 .bg-mods-green .dropdown-item:hover {
   background-color: var(--yellow);
   color: var(--dark);
+  
 }
-
-/* Optional: Add smooth expand/collapse animation */
-.bg-mods-green .dropdown-menu {
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
 
 /* === Arrow rotation === */
 .navbar-nav .nav-link img {
@@ -233,17 +172,13 @@ div .row_article_title {
   height: 14px;
   vertical-align: middle;
 }
-
 .navbar-nav .nav-link[aria-expanded="true"] img {
   transform: rotate(180deg);
   filter: brightness(0) saturate(100%) invert(86%) sepia(91%) saturate(692%) hue-rotate(2deg) brightness(108%) contrast(103%);
 }
 
-.navbar-nav .dropdown-toggle::after { 
-  display: none !important; 
-}
+.navbar-nav .dropdown-toggle::after { display: none !important; }
 
-/* === End dropdown === */
 
 /* === Button Styling === */
 .button {
@@ -524,8 +459,34 @@ h1.text-dark.full-width::after {
     animation: glow 2s ease-in-out infinite;
 }
 
+/* === Browser Support === */
+/*
+✅ Chrome: All versions (including mobile)
+✅ Firefox: All versions
+✅ Safari: 5.1+ (including iOS)
+✅ Edge: All versions
+✅ Opera: 11.1+
+✅ Internet Explorer: 10+ (no animation in IE9, but line still shows)
+✅ Samsung Internet: All versions
+✅ UC Browser: All versions
 
+Graceful degradation for older browsers:
+- IE9: Shows solid #009241 line (no gradient/animation)
+- Very old browsers: No underline effect (doesn't break layout)
+*/
 
+/* === Usage === */
+/* 
+HTML:
+<h1 class="text-dark full-width">Your Title</h1>
+
+This version uses your primary dark green (#009241) with:
+- Bolder 5px line
+- Strong dark green glow effect
+- Full cross-browser compatibility
+- Matches your brand's primary green color
+*/
+/* === for H1 Styling === */
 .content-box {
   line-height: 1.3;
   text-align: justify;
