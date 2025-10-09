@@ -1,14 +1,14 @@
 {% load wagtailcore_tags wagtailimages_tags static %}
 <!-- Team Swiper Section -->
 {% if swiper_items %}
-<section id="team-swiper" class="py-5 text-dark">
+<section id="team-swiper" class="text-dark">
   <div class="container-xl">
 
     <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper py-2">
 
         {% for item in swiper_items %}
-        <div class="swiper-slide">
+        <div class="swiper-slide" style="padding: 5px  15px 5px  15px;">
                 <div class="card text-center bg-transparent border-0 h-100 d-flex flex-column">
 
                     <!-- Profile Image -->
