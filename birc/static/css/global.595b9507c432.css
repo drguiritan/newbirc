@@ -18,7 +18,7 @@ body {
   line-height: 1.6;
   margin: 0;
 
-  background-image: url('/static/image/icons-svg/liquid-new.svg');
+  background-image: url("/static/image/icons-svg/liquid-new.0f46fa3c4e1d.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -59,7 +59,7 @@ div .row_article_title {
 
 /* === Navbar Base === */
 .bg-mods-green {
-  background-image: url('/static/image/icons-svg/sun-tornado-h.svg');
+  background-image: url("/static/image/icons-svg/sun-tornado-h.65ad567568ed.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -291,7 +291,7 @@ div .row_article_title {
   /* background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
   background-size: cover;
   color: var(--white); */
-  background-image: url('/static/image/icons-svg/sun-tornado-f.svg');
+  background-image: url("/static/image/icons-svg/sun-tornado-f.a93dd740b040.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
