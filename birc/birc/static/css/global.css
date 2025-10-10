@@ -59,10 +59,16 @@ div .row_article_title {
 
 /* === Navbar Base === */
 .bg-mods-green {
+  background-image: url('/static/image/icons-svg/sun-tornado-h.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+  /* keep these for layout and fallback color */
   background-color: var(--green) !important;
   position: relative;
-  opacity: 0.90;
-  z-index: 1001; 
+  opacity: 0.95;
+  z-index: 1001;  
 }
 
 .bg-mods-green::after {
@@ -77,10 +83,38 @@ div .row_article_title {
 
 .bg-mods-green .navbar-nav .nav-link,
 .bg-mods-green .navbar-brand {
-  color: var(--white) !important;
-  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white !important;
+  padding-top: 8px;
+
+ 
   
 }
+/* Hover effect: subtle scale + color accent */
+.navbar-nav .nav-link:hover .nav-icon {
+  transform: scale(1.1);
+  stroke: #80ffd3; /* lighter green hover */
+}
+
+/* Label spacing and font size */
+.navbar-nav .nav-link .nav-label {
+  font-size: 1.1rem;
+  margin-top: 2px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Chevron icon styling */
+.navbar-nav .nav-link img {
+  opacity: 0.8;
+}
+
 
 .bg-mods-green .navbar-nav .nav-link:hover,
 .bg-mods-green .navbar-nav .nav-link.active {
@@ -222,18 +256,6 @@ div .row_article_title {
 
 
 /* === Arrow rotation === */
-.navbar-nav .nav-link img {
-  transition: transform 0.3s ease, filter 0.3s;
-  margin-left: 6px;
-  width: 14px;
-  height: 14px;
-  vertical-align: middle;
-}
-
-.navbar-nav .nav-link[aria-expanded="true"] img {
-  transform: rotate(180deg);
-  filter: brightness(0) saturate(100%) invert(86%) sepia(91%) saturate(692%) hue-rotate(2deg) brightness(108%) contrast(103%);
-}
 
 .navbar-nav .dropdown-toggle::after { 
   display: none !important; 
@@ -266,11 +288,14 @@ div .row_article_title {
 
 /* === Footer Styling === */
 #footer {
-  background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
+  /* background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
   background-size: cover;
-  color: var(--white);
-  padding: 60px 0;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+  color: var(--white); */
+  background-image: url('/static/image/icons-svg/sun-tornado-f.svg');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+
 }
 
 #footer a { color: var(--white); transition: color 0.3s; }
@@ -671,5 +696,31 @@ h1.text-dark.full-width::after {
   .navbar-toggler:focus {
     box-shadow: none;
     outline: none;
+  }
+}
+
+/* === Right-aligned dropdown menus for navbar === */
+@media (min-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    right: 0 !important;      /* Align to the right side of the parent */
+    left: auto !important;     /* Disable left positioning */
+    transform-origin: top right !important; /* Animate from top-right corner */
+    margin-top: -10px;
+  }
+
+  /* Optional: subtle slide-in animation from right */
+  .navbar-nav .dropdown-menu.show {
+    animation: dropdownSlideLeft 0.25s ease-out;
+  }
+
+  @keyframes dropdownSlideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }

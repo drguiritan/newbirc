@@ -27,10 +27,32 @@
 
           <!-- Services Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Services <img src="{% static 'image/icons-svg/chevron-down.svg' %}" width="15" height="15" alt="-">
-            </a>
+            <a class="nav-link dropdown-toggle text-center" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  
+              <!-- Inline SVG icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D5FF85"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="nav-icon mb-1"
+              >
+                <path d="M13 20.693c-.905 .628 -2.36 .292 -2.675 -1.01a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.492 .362 1.716 2.219 .674 3.03" />
+                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path d="M17 22l5 -3l-5 -3z" />
+              </svg>
+
+              <!-- Label text -->
+               <span class="nav-label text-white d-block">                  
+                  Services
+                </span>          
+          </a>
+
             <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
               <li><a class="dropdown-item" href="{{ nhc_collection.url }}">FSUU-NHC Collection</a></li>
               <li><a class="dropdown-item" href="services.html">Specify 7 PORTAL</a></li>
@@ -42,10 +64,38 @@
 
           <!-- Research Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="researchDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Research <img src="{% static 'image/icons-svg/chevron-down.svg' %}" width="15" height="15" alt="-">
-            </a>
+           
+
+             <a class="nav-link dropdown-toggle text-center" href="#" id="researchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  
+              <!-- Inline SVG icon -->
+
+               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D5FF85"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="nav-icon mb-1"
+              >
+                  <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+                  <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+                  <path d="M9.7 17l4.6 0" />
+
+
+              </svg>
+
+              
+               <!-- Label text -->
+               <span class="nav-label text-white d-block">                  
+                  Research
+                </span>          
+          </a>
+
             <ul class="dropdown-menu" aria-labelledby="researchDropdown">
               <li><a class="dropdown-item" href="{{ ure_page.url }}">Undergraduate Research</a></li>
               <li><a class="dropdown-item" href="{{ faculty_page.url }}">Faculty Research</a></li>
@@ -56,10 +106,35 @@
 
           <!-- About Us Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              About Us <img src="{% static 'image/icons-svg/chevron-down.svg' %}" width="15" height="15" alt="-">
-            </a>
+            <a class="nav-link dropdown-toggle text-center" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  
+              <!-- Inline SVG icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#D5FF85"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="nav-icon mb-1"
+              >
+                  <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
+                  <path d="M13 7l0 .01" />
+                  <path d="M17 7l0 .01" />
+                  <path d="M17 11l0 .01" />
+                  <path d="M17 15l0 .01" />
+
+              </svg>
+
+              <!-- Label text -->
+               <span class="nav-label text-white d-block">                  
+                  About Us
+                </span>          
+          </a>
+
             <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
               <li><a class="dropdown-item" href="{{ mv_page.url }}">Mission & Vision</a></li>
               <li><a class="dropdown-item" href="#">Our Projects</a></li>
