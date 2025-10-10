@@ -419,6 +419,9 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
     email = models.EmailField(default="biodiversity@urios.edu.ph")
     developed_by = models.TextField(verbose_name="Developed By",default="© 2025 FSUU BIRC WEBSITE. All Rights Reserved | Developed by BIRC TEAM")
     footer_additional_info = models.TextField(verbose_name="A caption footer additional information for all site wide footer article page",blank=True,default="")
+    lp_caption1 = models.TextField(verbose_name="Landing page section caption 1",blank=True,default="Highlights 1")
+    lp_caption2 = models.TextField(verbose_name="Landing page section caption 2",blank=True,default="Highlights 2")
+    lp_caption3 = models.TextField(verbose_name="Landing page section caption 3",blank=True,default="Highlights 3")
     fsuu_mv_caption = models.TextField(verbose_name="FSUU mision and vision caption",blank=True,default="Father Saturnino Urios University")
     birc_mv_caption = models.TextField(verbose_name="BIRC mision and vision caption",blank=True,default="Biodiversity Informatics Research Center")
     mv_ourteam_caption = models.TextField(verbose_name="Team Title",blank=True,default="Our Team")
@@ -446,10 +449,15 @@ class SiteConfiguration(ClusterableModel,BaseSiteSetting):
                 FieldPanel("email"),
                 FieldPanel("site_description"),
                 FieldPanel("footer_additional_info"),
-                FieldPanel("developed_by"),            
+                FieldPanel("developed_by"),                            
             ],
             heading="Site wide configuration"
         ),
+        MultiFieldPanel([
+              FieldPanel("lp_caption1"),  
+              FieldPanel("lp_caption2"), 
+              FieldPanel("lp_caption3"), 
+        ],  heading="Landing page section header captions",classname="collapsed"),
         MultiFieldPanel(
             [
                 FieldPanel("fsuu_mv_caption"),
