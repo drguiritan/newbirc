@@ -13,6 +13,9 @@ def research_links(request):
         "collaboration_page": Page.objects.filter(id=36).live().first(),
         "publication_page": Page.objects.filter(id=37).live().first(),               
         "mv_page": Page.objects.filter(id=43).live().first(),
+        "specify_page": Page.objects.filter(id=45).live().first(),
+        "ipt_gbif_page": Page.objects.filter(id=46).live().first(),
+        "photogrammetry_lab_page": Page.objects.filter(id=47).live().first(),
     }
 
 def contact_link(request):

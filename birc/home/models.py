@@ -304,7 +304,7 @@ class PublicationArticlePage(Page):
     parent_page_types = ["PublicationResearchPage"]
     subpage_types = []
 
-#site wide Master Page
+#site wide Master Page  or equivalent to other pages
 class SiteWidePage(Page):
     cover_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -328,7 +328,7 @@ class SiteWidePage(Page):
     class Meta:
         verbose_name = "Creating pages for other purpose"
 
-#site wide Child Pages
+#site wide Child Pages or equivalent to other pages
 class SiteWideArticlePage(Page):
     cover_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -346,6 +346,10 @@ class SiteWideArticlePage(Page):
         FieldPanel("short_description"),
         FieldPanel("content"),
         FieldPanel("extra_field"),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        PageIDPanel(heading="Page ID")
     ]
 
     parent_page_types = ["SiteWidePage"]  # can only be added under SiteWidePage
