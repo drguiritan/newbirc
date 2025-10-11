@@ -185,11 +185,13 @@
           </a>
           <div class="collapse" id="servicesCollapse">
             <ul class="list-unstyled ps-4">
-              <li><a class="nav-link py-2" href="{{ nhc_collection.url }}">FSUU-NHC Collection</a></li>
-              <li><a class="nav-link py-2" href="services.html">Specify 7 PORTAL</a></li>
-              <li><a class="nav-link py-2" href="services.html">IPT GBIF</a></li>
-              <li><a class="nav-link py-2" href="services_detail.html">Photogrammetry Laboratory</a></li>
-              <li><a class="nav-link py-2" href="services_detail.html">Downloadable Forms</a></li>
+              
+              <li><a class="dropdown-item" href="{{ nhc_collection.url }}">FSUU-NHC Collection</a></li>
+              <li><a class="dropdown-item" href="{{ specify_page.url}}">Specify 7 PORTAL</a></li>
+              <li><a class="dropdown-item" href="{{ ipt_gbif_page.url }}">IPT GBIF</a></li>
+              <li><a class="dropdown-item" href="{{ photogrammetry_lab_page.url }}">Photogrammetry Laboratory</a></li>
+              <li><a class="dropdown-item" href="{{ downloadable_page.url }}">Downloadable Forms</a></li>
+              
             </ul>
           </div>
         </li>
