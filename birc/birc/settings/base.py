@@ -33,8 +33,9 @@ ALLOWED_HOSTS = ['103.125.216.46', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    "home",
-    "contacts",
+    "home", #main project
+    "contacts", #secondary app 1
+    "downloadables", #secondary app 2
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -89,6 +90,7 @@ TEMPLATES = [
                 "home.context_processors.site_configuration",
                 "home.context_processors.contact_link",
                 "home.context_processors.swiper_context",
+                "downloadables.context_processors.downloadable_links",
                 
             ],
         },

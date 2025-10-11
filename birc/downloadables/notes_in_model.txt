@@ -1,0 +1,6 @@
+| Model                     | Purpose                                                            | Typical Example                                    | Usage                                        |
+| ------------------------- | ------------------------------------------------------------------ | -------------------------------------------------- | -------------------------------------------- |
+| **DownloadableFormsPage** | Main Wagtail page containing both individual and grouped documents | “Downloadable Forms Page”                          | Holds all your downloadable resources        |
+| **DownloadableFile**      | Represents individual standalone documents                         | “Memorandum of Understanding”, “Registration Form” | Added under the “Individual Documents” panel |
+| **DownloadableGroup**     | Represents a category/group of related files                       | “Faculty Research Workshop”                        | Contains several related forms               |
+| **DownloadableSubFile**   | Represents a single file inside a group                            | “Ethics Form” (inside “Faculty Research Workshop”) | Added as sub-items under a group             |
