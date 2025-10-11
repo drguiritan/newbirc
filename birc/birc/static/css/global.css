@@ -724,3 +724,61 @@ h1.text-dark.full-width::after {
     }
   }
 }
+
+
+/* === Forest-Themed Pagination === */
+
+.pagination {
+  
+
+  font-family: "Poppins", sans-serif;
+}
+
+/* Remove rounding for all page links */
+.page-link {
+  border-radius: 0 !important;
+  border: 1px solid #ebebea;
+  color: var(--bs-gray-400);
+}
+
+/* Active page (current page) */
+.page-item.active .page-link {
+  background-color: var(--green);
+  color: var(--yellow);
+  
+}
+
+
+/* Round only the left side (Previous control) */
+.page-item:first-child .page-link {
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+/* Round only the right side (Next control) */
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+}
+
+/* Keep border consistent on hover and active */
+.page-item.active .page-link
+ {
+  border-color: #ebebea;
+
+}
+
+.page-link:hover {
+  color: var(--bs-gray-700);
+
+}
+
+.page-item.disabled .page-link {
+  background-color: var(--gray);
+  color: #6c757d; /* slightly dimmed text */
+  border-color: #ebebea;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* === End Forest-Themed Pagination === */

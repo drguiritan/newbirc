@@ -27,7 +27,7 @@
   <div class="container-xl">
     <div class="blog_1 row row-cols-1">
 
-      {% for article in page.get_children.live %}
+      {% for article in articles  %}
         {% with article=article.specific %}
           <div class="col mb-4">
             <div class="blog_1_left rounded_10 p-3 shadow">
@@ -68,13 +68,14 @@
       {% endfor %}
 
     </div>
+     {% include "home/pagination.html" with paginated_items=articles mobile_style=False extra_classes="mt-4" aria_label="Article pagination" %}
   </div>
 </section>
 
 <!-- Mobile Layout -->
 <section id="blog-mobile" class="blog-mobile pt-1 d-block d-md-none">
   <div class="container">
-    {% for article in page.get_children.live %}
+    {% for article in articles  %}
       {% with article=article.specific %}
         <div class="blog_1_left rounded_10 mb-3 shadow p-2">
 
@@ -102,6 +103,8 @@
     {% empty %}
       <p>No research articles yet.</p>
     {% endfor %}
+    
+    {% include "home/pagination.html" with paginated_items=articles mobile_style=True extra_classes="mt-4" aria_label="Article pagination" %}
   </div>
 </section>
 

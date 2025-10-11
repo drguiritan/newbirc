@@ -1,8 +1,23 @@
 from django.db import models
+from django.core.paginator import (
+    Paginator, 
+    EmptyPage, 
+    PageNotAnInteger
+)
+
 from wagtail.models import Page,Orderable
 from wagtail.fields import RichTextField
+from wagtail.admin.panels import ( 
+        FieldPanel,
+        MultiFieldPanel,
+        PageChooserPanel,
+        InlinePanel)
+from wagtail.blocks import (
+    RichTextBlock, 
+    CharBlock,  
+    PageChooserBlock,
+    URLBlock)
 
-from wagtail.admin.panels import FieldPanel,MultiFieldPanel,PageChooserPanel,InlinePanel
 from wagtail.images.models import Image
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from modelcluster.models import ClusterableModel
@@ -10,7 +25,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.fields import StreamField
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.blocks import RichTextBlock, CharBlock,  PageChooserBlock,URLBlock
+
 
 from .field_panels import FileUploadPanel
 from .forms import SpeciesDataTableForm
@@ -46,6 +61,24 @@ class StudentResearchPage(Page):
     
     subpage_types = ["ResearchArticlePage"]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        all_articles = ResearchArticlePage.objects.child_of(self).live().order_by('-first_published_at')
+        
+        # Pagination
+        page = request.GET.get('page', 1)
+        paginator = Paginator(all_articles, 5)  # Show 5 articles per page
+        
+        try:
+            articles = paginator.page(page)
+        except PageNotAnInteger:
+            articles = paginator.page(1)
+        except EmptyPage:
+            articles = paginator.page(paginator.num_pages)
+        
+        context['articles'] = articles
+        return context
+    
     class Meta:
         verbose_name = "Creating pages for URE only"
 

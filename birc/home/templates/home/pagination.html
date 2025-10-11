@@ -1,0 +1,51 @@
+{% if paginated_items.has_other_pages %}
+  <nav aria-label="{{ aria_label|default:'Page navigation' }}" class="pb-4">
+    <ul class="pagination justify-content-center {{ extra_classes|default:'' }}">
+      
+      {% if paginated_items.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ paginated_items.previous_page_number }}" {% if not mobile_style %}aria-label="Previous"{% endif %}>
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">&laquo;</span>
+        </li>
+      {% endif %}
+
+      {% if mobile_style %}
+        {# Simple mobile pagination: "2 of 5" #}
+        <li class="page-item active">
+          <span class="page-link">{{ paginated_items.number }} of {{ paginated_items.paginator.num_pages }}</span>
+        </li>
+      {% else %}
+        {# Desktop pagination: show page numbers #}
+        {% for num in paginated_items.paginator.page_range %}
+          {% if paginated_items.number == num %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">{{ num }}</span>
+            </li>
+          {% elif num > paginated_items.number|add:'-3' and num < paginated_items.number|add:'3' %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if paginated_items.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ paginated_items.next_page_number }}" {% if not mobile_style %}aria-label="Next"{% endif %}>
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">&raquo;</span>
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}

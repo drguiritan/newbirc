@@ -1,5 +1,6 @@
 /* === Global Color Palette === */
 :root {
+  --bs-primary: #009241 !important;
   --green: #009241;        /* Primary Green */
   --yellow: #FEF802;       /* Active Yellow */
   --dark-blue: #190355;    /* Footer Background */
@@ -18,7 +19,7 @@ body {
   line-height: 1.6;
   margin: 0;
 
-  background-image: url('/static/image/icons-svg/liquid-new.svg');
+  background-image: url("/static/image/icons-svg/liquid-new.0f46fa3c4e1d.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -59,7 +60,7 @@ div .row_article_title {
 
 /* === Navbar Base === */
 .bg-mods-green {
-  background-image: url('/static/image/icons-svg/sun-tornado-h.svg');
+  background-image: url("/static/image/icons-svg/sun-tornado-h.65ad567568ed.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -291,7 +292,7 @@ div .row_article_title {
   /* background: linear-gradient(135deg, #009241 0%, #00b056 50%, #007f32 100%);
   background-size: cover;
   color: var(--white); */
-  background-image: url('/static/image/icons-svg/sun-tornado-f.svg');
+  background-image: url("/static/image/icons-svg/sun-tornado-f.a93dd740b040.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -727,27 +728,30 @@ h1.text-dark.full-width::after {
 
 
 /* === Forest-Themed Pagination === */
-
+/* === Forest-Themed Pagination (Squared Pages + Rounded Ends) === */
 .pagination {
-  
+  --bs-pagination-bg: var(--green);
+  --bs-pagination-color: var(--yellow);
+  --bs-pagination-disabled-color:#ebebea;
 
-  font-family: "Poppins", sans-serif;
+  --bs-pagination-hover-bg: var(--yellow);
+  --bs-pagination-hover-color: var(--green);
+  --bs-pagination-disabled-color:#ebebea;
+
+  --bs-pagination-active-bg: var(--yellow);
+  --bs-pagination-active-color: var(--green) !important;
+  --bs-pagination-disabled-color:#ebebea;
+
+  --bs-pagination-disabled-bg: var(--gray);
+  --bs-pagination-disabled-color:#ebebea;
+  --bs-pagination-disabled-border-color: var(--gray);
 }
 
 /* Remove rounding for all page links */
 .page-link {
   border-radius: 0 !important;
   border: 1px solid #ebebea;
-  color: var(--bs-gray-400);
 }
-
-/* Active page (current page) */
-.page-item.active .page-link {
-  background-color: var(--green);
-  color: var(--yellow);
-  
-}
-
 
 /* Round only the left side (Previous control) */
 .page-item:first-child .page-link {
@@ -762,23 +766,11 @@ h1.text-dark.full-width::after {
 }
 
 /* Keep border consistent on hover and active */
-.page-item.active .page-link
- {
-  border-color: #ebebea;
-
-}
-
+.page-item.active .page-link,
 .page-link:hover {
-  color: var(--bs-gray-700);
-
+  border-color:#ebebea;
 }
 
-.page-item.disabled .page-link {
-  background-color: var(--gray);
-  color: #6c757d; /* slightly dimmed text */
-  border-color: #ebebea;
-  pointer-events: none;
-  opacity: 0.7;
-}
+
 
 /* === End Forest-Themed Pagination === */
